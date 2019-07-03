@@ -1,0 +1,76 @@
+<section class="container-fluid">
+
+    <!--Tab feeds va discover-->
+    <div class="row">
+      <%= render '/layouts/tab_feeds' %>
+
+      <article class="tab-content col-md-9 p-0 mt-5" >
+         <div class="col-sm-8 col-lg-9" style="background-color: white">
+            <div class="container">
+              <div class="row">
+                <div class="col-12">
+                  <h3 class="pt-4"><b>New Album</b></h3>
+                  <hr>
+                </div>
+              </div>
+              <%= form_with(model: @album, local: true) do |form| %>
+                <% if @album.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:</h2>
+
+                    <ul>
+                    <% @album.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                    </ul>
+                  </div>
+                <% end %>
+              <div class="row">
+                  <div class="col-12 col-lg-6">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <%= form.text_field :title, class:"form-control", placeholder:"Enter photo title" %>
+                      </div>
+
+                    <div class="form-group">
+                        <label>Sharing Mode</label>
+                        <%= form.select(:sharing_mode, class:"form-control") do %>
+                          <% [['Public', true], ['Private', false]].each do |c| -%>
+                            <%= content_tag(:option, c.first, value: c.last) %>
+                          <% end %>
+                        <% end %>
+                      </div>
+
+                  </div>
+
+                  <div class=" col-12 col-lg-6">
+                    <div class="form-group">
+                        <label>Desription</label>
+                        <%= form.text_area :description, class:"form-control",rows:"6", placeholder:"Enter description" %>
+                      </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col images">
+                    <div class="upload-btn-wrapper float-left sizeMyPhotos mt-2">
+                      <button class="btnUpload"><img src="/assets/plus4.png"></button>
+                      <div class="controls">
+                        <%= file_field_tag "images[]", type: :file, multiple: true, class:"btnUpload", onchange:"showImageAlbum.call(this)" %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mt-5 m-1">
+                    <%= form.submit "Save", class:"btn btnSubmit mr-2" %>
+                </div>
+              <% end %>
+            </div>
+      </article>
+
+    </div>
+  </section>
+
+
+
+<%= link_to 'Back', albums_path %>
