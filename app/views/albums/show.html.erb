@@ -1,5 +1,8 @@
-<!-- show.html.erb -->
-p>
+<p id="notice"><%= notice %></p>
+
+
+
+<p>
   <strong>Title:</strong>
   <%= @album.title %>
 </p>
@@ -8,25 +11,6 @@ p>
   <strong>Description:</strong>
   <%= @album.description %>
 </p>
-<div class="container">
-  <div id="links">
-    <% @album.pictures.each do |photo| %>
-        <%= link_to image_tag(photo.image.url(:medium)), photo.image.url, data: { album: ''} %>
-        <% end %>
-  </div>
-</div>
-
-<!-- The Gallery as lightbox dialog, should be a child element of the document body -->
-<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
-    <div class="slides"></div>
-    <h3 class="title"></h3>
-    <a class="prev">‹</a>
-    <a class="next">›</a>
-    <a class="close">×</a>
-    <a class="play-pause"></a>
-    <ol class="indicator"></ol>
-</div>
-
 
 
 <%= link_to 'Edit', edit_album_path(@album) %> |
