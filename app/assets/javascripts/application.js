@@ -12,10 +12,12 @@
 //
 //= require jquery
 //= require rails-ujs
+//= require jquery-ui/widgets/sortable
 //= require activestorage
 //= require turbolinks
 //= require_tree .
 //= require bootstrap
+//= require blueimp-gallery
 
 //nut follow
 $(document).ready(function(){
