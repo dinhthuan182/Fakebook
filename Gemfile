@@ -54,11 +54,9 @@ end
 gem 'bootstrap','>=4.3.1'
 # gem 'bootstrap-sass', '3.3.6'
 gem 'jquery-rails','4.3.5'
-gem 'jquery-ui-rails'
 
 gem 'bcrypt', '~> 3.1.7'
 gem "paperclip", "~> 5.1"
-gem 'simple_form'
 
 
 group :test do

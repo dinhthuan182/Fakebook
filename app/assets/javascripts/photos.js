@@ -14,6 +14,6 @@ function showImagePhoto(){
   }
 };
 function clickClose(){
-  $(this).parent().remove();
+  $(this).parent().empty();
   $('.btnUpload').css({ display: "block" });
 };
