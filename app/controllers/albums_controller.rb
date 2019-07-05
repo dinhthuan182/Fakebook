@@ -4,21 +4,24 @@ class AlbumsController < ApplicationController
   # GET /albums
   # GET /albums.json
   def index
-    @albums = current_user.albums.all
+    @albums = Album.all
   end
 
   # GET /albums/1
   # GET /albums/1.json
   def show
+    @album = current_user.albums.find(params[:id])
   end
 
   # GET /albums/new
   def new
     @album = current_user.albums.new
+    @image = @album.pictures.build
   end
 
   # GET /albums/1/edit
   def edit
+    @album = current_user.albums.find(params[:id])
   end
 
   # POST /albums
@@ -28,10 +31,9 @@ class AlbumsController < ApplicationController
 
     respond_to do |format|
       if @album.save
-        if params[:images]
-        params[:images].each { |image|
-          @album.pictures.create(image: image)
-        }
+        params[:pictures]['image'].each do |a|
+        @image = @album.pictures.create!(:image => a)
+        end
 
         format.html { redirect_to @album, notice: 'Album was successfully created.' }
         format.json { render :show, status: :created, location: @album }
@@ -47,6 +49,13 @@ class AlbumsController < ApplicationController
   def update
     respond_to do |format|
       if @album.update(album_params)
+        if params[:images]
+          params[:images].each do |image|
+            existing_image = @album.pictures.find {|photo| photo.image_file_name == image.original_filename}
+            @album.pictures.create(image: image) unless existing_image
+          end
+        end
+
         format.html { redirect_to @album, notice: 'Album was successfully updated.' }
         format.json { render :show, status: :ok, location: @album }
       else
@@ -69,11 +78,11 @@ class AlbumsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_album
-      @album = current_user.albums.find(params[:id])
+      @album = Album.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def album_params
-      params.require(:album).permit(:title, :description)
+      params.require(:album).permit(:title, :description, :sharing_mode, pictures_attributes: [:id, :album_id, :image])
     end
 end

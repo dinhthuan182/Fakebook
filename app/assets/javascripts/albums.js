@@ -15,5 +15,12 @@ function showImageAlbum() {
 };
 
 function clickCloseA(){
-  $(this).parent().parent().empty();
+  $(this).parent().parent().remove();
 };
+
+
+
+
+
+
+
