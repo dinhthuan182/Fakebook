@@ -8,7 +8,7 @@
             <div class="container">
               <div class="row">
                 <div class="col-12">
-                  <h2>Editing Photo</h2>
+                  <h1>Editing Photo</h1>
                   <hr>
                 </div>
               </div>
@@ -33,7 +33,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group w-50">
                       <b><label>Sharing Mode</label></b>
                       <%= form.select(:sharing_mode, class:"form-control") do %>
                           <% [['Public', true], ['Private', false]].each do |c| -%>
@@ -60,7 +60,7 @@
                         <div class="img float-left mt-2 mr-1">
                           <div ng-repeat="file in imagefinaldata" class="img_wrp">
                             <%= image_tag(@photo.image.url, class:"sizeMyPhotos imgResponsiveMax") if @photo.image.exists? %>
-                            <img class="btnClose m-1" src="/assets/close.png" onclick="clickClose.call(this)"style="width:30px; height: 30px" />
+                            <img class="btnClose m-1" src="/assets/close.png" onclick="clickClose(this)"style="width:30px; height: 30px" />
                           </div>
                           <div class="btnUpload" style="display: none;">
                           <button class="btnUpload"><img src="/assets/plus4.png"></button>
