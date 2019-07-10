@@ -1,20 +1,37 @@
 <p id="notice"><%= notice %></p>
+<div class="row d-flex flex-row-reverse p-3">
+  <a class="btn btn-success float-right btnRadius" href=""><b>Add Albums</b></a>
+</div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @album.title %>
-</p>
+<div class="row">
+  <% @albums.each do |album| %>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center sizeFramePhotos">
+      <div class="d-flex justify-content-center m-0 text-center sizeImage">
+        <% album.images.each_with_index do |photo, index| %>
+            <% if !(index +1 == @album.images.length) %>
+              <%= image_tag photo, {class:"rounded-sm sizeAlbums", style:"position: absolute; z-index: index;"} %>
+            <% else %>
+              <% a = (index*5).to_s %>
+              <%= image_tag photo, {class:"rounded-sm sizeAlbums", style:"position: absolute; z-index: index; transform: rotate("+ '8'+"deg)"} %>
+            <% end %>
+        <% end %>
+        <p class="rounded-circle bg-secondary p-3" style="position: absolute; z-index: <%= album.images.length %> + 1; margin-top: 70px;"><b><%= album.images.length %><br><small>PHOTOS</small></b></p>
+        <% if album.sharing_mode? %>
+            <i class="fa fa-unlock fa-lg rounded-circle bg-secondary p-2 mt-1" style="position: absolute; z-index: <%= album.images.length %> + 2; margin-left: 176px; margin-top: 5px;"></i>
+            <% else %>
+            <i class="fa fa-lock fa-lg rounded-circle bg-secondary p-2 mt-1" style="position: absolute; z-index: <%= album.images.length %> + 2; margin-left: 176px; margin-top: 5px;"></i>
+          <% end %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @album.description %>
-</p>
-<% @album.images.each do |photo| %>
-  <% if photo.variable? %>
-    <%= image_tag photo.variant(resize: "300x300") %>
-  <% else %>
-    <%= image_tag photo.preview(resize: "300x300") %>
+        <a class="btn btn-secondary" style="position: absolute; z-index: <%= album.images.length %> + 3; margin-top: 178px; margin-left: 147px; float: right;" href="#">EDIT</a>
+      </div>
+      <div class="d-flex justify-content-center">
+        <p><%= album.title %></p>
+      </div>
+
+    </div>
   <% end %>
-<% end %>
+</div>
 <%= link_to 'Edit', edit_album_path(@album) %> |
 <%= link_to 'Back', albums_path %>
+
+

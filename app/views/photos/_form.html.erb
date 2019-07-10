@@ -46,25 +46,24 @@
                   <div class="row">
                     <div class="col images">
                       <div class="upload-btn-wrapper float-left sizeMyPhotos">
-                        <% if @photo.image.nil? %>
-                        <div>
-                          <button class="btnUpload"><img src="/assets/plus4.png"></button>
-                          <%= f.file_field :image, class:"btnUpload", onchange:"showImagePhoto.call(this)" %>
-                        </div>
-                        <% else %>
-                        <div class="img float-left mt-2 mr-1">
-                          <div class="img float-left mt-2 mr-1">
-                            <div ng-repeat="file in imagefinaldata" class="img_wrp sizeMyPhotos">
-                              <%= image_tag @photo.image.variant(resize: "300x300") if @photo.image.attached? %>
-                              <img class="btnClose m-1" src="/assets/close.png" onclick="clickClose.call(this)"style="width:30px; height: 30px" />
-                            </div>
-                            <div class="btnUpload" style="display: none;">
+                        <% if !@photo.image.attached? %>
+                          <div class="btnUpload" style="display: block;">
                             <button class="btnUpload"><img src="/assets/plus4.png"></button>
-                              <%= f.label :image, class:"btnUpload" %>
-                              <%= f.file_field :image, class:"btnUpload", onchange:"showImagePhoto.call(this)" %>
+                            <%= f.file_field :image, class:"btnUpload", onchange:"showImagePhoto.call(this)" %>
+                          </div>
+                      <% else %>
+                          <div class="img float-left mt-2 mr-1">
+                            <div class="img float-left mt-2 mr-1">
+                              <div ng-repeat="file in imagefinaldata" class="img_wrp sizeMyPhotos">
+                                <%= image_tag @photo.image.variant(resize: "300x300") if @photo.image.attached? %>
+                                <img class="btnClose m-1" src="/assets/close.png" onclick="clickClose.call(this)"style="width:30px; height: 30px" />
+                              </div>
+                              <div class="btnUpload" style="display: none;">
+                              <button class="btnUpload"><img src="/assets/plus4.png"></button>
+                                <%= f.file_field :image, class:"btnUpload", onchange:"showImagePhoto.call(this)" %>
+                              </div>
                             </div>
                           </div>
-                        </div>
                         <% end %>
                       </div>
                     </div>

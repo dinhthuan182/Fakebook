@@ -1,4 +1,5 @@
 class AlbumsController < ApplicationController
+  before_action :set_album, except: [:index, :new, :create, :delete_image_attachment]
   before_action :set_album, only: [:show, :edit, :update, :destroy]
 
   # GET /albums
@@ -10,6 +11,7 @@ class AlbumsController < ApplicationController
   # GET /albums/1
   # GET /albums/1.json
   def show
+    @albums = current_user.albums.all
   end
 
   # GET /albums/new
@@ -29,7 +31,7 @@ class AlbumsController < ApplicationController
     respond_to do |format|
       if @album.save
         format.html { redirect_to @album, notice: 'Album was successfully created.' }
-        format.json { render :show, status: :created, location: @album }
+        format.json { render :show, status: :created, location: current_user }
       else
         format.html { render :new }
         format.json { render json: @album.errors, status: :unprocessable_entity }
@@ -43,7 +45,7 @@ class AlbumsController < ApplicationController
     respond_to do |format|
       if @album.update(album_params)
         format.html { redirect_to @album, notice: 'Album was successfully updated.' }
-        format.json { render :show, status: :ok, location: @album }
+        format.json { render :show, status: :ok, location: current_user }
       else
         format.html { render :edit }
         format.json { render json: @album.errors, status: :unprocessable_entity }
@@ -59,6 +61,12 @@ class AlbumsController < ApplicationController
       format.html { redirect_to albums_url, notice: 'Album was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def delete_image_attachment
+    @photo = ActiveStorage::Blob.find_signed(params[:id])
+    @photo.purge_later
+    redirect_back(fallback_location: albums_path)
   end
 
   private
