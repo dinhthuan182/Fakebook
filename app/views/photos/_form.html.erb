@@ -26,7 +26,7 @@
 
                       <div class="form-group w-50">
                         <label>Sharing Mode</label>
-                        <%= f.select(:sharing_mode, options_for_select([['Public', true], ['Private', false]]), {}, {class: "form-control w-50"}) %>
+                        <%= f.select(:sharing_mode, options_for_select([['Public', true], ['Private', false]]), {}, {class: "form-control"}) %>
                       </div>
 
                     </div>
@@ -52,7 +52,7 @@
                             <div class="img float-left mt-2 mr-1">
                               <div ng-repeat="file in imagefinaldata" class="img-wrp size-my-photos">
                                 <%= image_tag @photo.image.variant(resize: "300x300") if @photo.image.attached? %>
-                                <img class="btn-close m-1" src="/assets/close.png" onclick="clickClose.call(this)" />
+                                  <img class="btn-close m-1" src="/assets/close.png" onclick="clickClose.call(this)" />
                               </div>
                               <div class="btn-upload" style="display: none;">
                               <button class="btn-upload"><img src="/assets/plus4.png"></button>

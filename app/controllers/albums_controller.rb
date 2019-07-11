@@ -30,7 +30,7 @@ class AlbumsController < ApplicationController
 
     respond_to do |format|
       if @album.save
-        format.html { redirect_to @album, notice: 'Album was successfully created.' }
+        format.html { redirect_to current_user, notice: 'Album was successfully created.' }
         format.json { render :show, status: :created, location: current_user }
       else
         format.html { render :new }
@@ -64,8 +64,8 @@ class AlbumsController < ApplicationController
   end
 
   def delete_image_attachment
-    @image = ActiveStorage::Blob.find(params[:id])
-    @image.purge_later
+    @image = ActiveStorage::Attachment.find(params[:id])
+    @image.purge
     respond_to do |format|
       format.html {redirect_back(fallback_location: request.referer)}
       format.js
@@ -80,6 +80,6 @@ class AlbumsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def album_params
-      params.require(:album).permit(:title, :description, :sharing_mode, images: [])
+      params.require(:album).permit(:title, :description, :sharing_mode, :delete_image_attachment, images: [])
     end
 end

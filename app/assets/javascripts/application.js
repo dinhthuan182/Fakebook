@@ -17,6 +17,10 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap
+//= require activestorage
+import * as ActiveStorage from "activestorage";
+import "direct_uploads.js"
+ActiveStorage.start();
 
 $(document).ready(function(){
 //nut like

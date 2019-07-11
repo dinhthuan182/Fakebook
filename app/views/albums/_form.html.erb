@@ -3,7 +3,7 @@
   <div class="row">
     <%= render '/layouts/tab_feeds' %>
     <article class="tab-content col-md-9 p-0 mt-5" >
-      <div class="col-sm-8 col-lg-9 bg-white">
+      <div class="col-sm-8 col-lg-10 bg-white">
         <div class="container-fluid">
           <div class="row">
             <div class="col-12">
@@ -33,12 +33,13 @@
                   </div>
                 </div>
               </div>
+
               <div class="row">
                 <div class="col images">
                   <% if @album.images.exists? %>
                     <% @album.images.each do |image| %>
                       <% if image.variable? %>
-                        <div id="image-<%= image.id %>">
+                        <div id="image_<%= image.id %>">
                           <div class="float-left mt-2 mr-1">
                             <div ng-repeat="file in imagefinaldata" class="img-wrp">
                               <%= image_tag image, {class:"size-my-photos"} %>
