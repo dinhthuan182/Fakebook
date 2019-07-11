@@ -7,7 +7,7 @@ function showImageAlbum() {
     for (var i = 0; i < this.files.length; i++) {
       var reader = new FileReader();
       reader.onload = function(data){
-      $('.images').prepend('<div class="float-left mt-2 mr-1"><div ng-repeat="file in imagefinaldata" class="img_wrp"><img src="' + data.target.result + '" class="sizeMyPhotos" alt="" /><img class="btnCloseA m-1" src="/assets/close.png" onclick="clickCloseA.call(this)"style="width:30px;height: 30px;" /></div></div>');
+      $('.images').prepend('<div class="float-left mt-2 mr-1"><div ng-repeat="file in imagefinaldata" class="img-wrp"><img src="' + data.target.result + '" class="size-my-photos" alt="" /><img class="btn-close-album m-1" src="/assets/close.png" onclick="clickCloseA.call(this)" /></div></div>');
       };
       reader.readAsDataURL(this.files[i]);
     }

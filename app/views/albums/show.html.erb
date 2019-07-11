@@ -1,18 +1,18 @@
 <p id="notice"><%= notice %></p>
 <div class="row d-flex flex-row-reverse p-3">
-  <a class="btn btn-success float-right btnRadius" href=""><b>Add Albums</b></a>
+  <a class="btn btn-success float-right btn-radius" href=""><b>Add Albums</b></a>
 </div>
 
 <div class="row">
   <% @albums.each do |album| %>
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center sizeFramePhotos">
-      <div class="d-flex justify-content-center m-0 text-center sizeImage">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center size-frame-photos">
+      <div class="d-flex justify-content-center m-0 text-center size-image">
         <% album.images.each_with_index do |photo, index| %>
             <% if !(index +1 == @album.images.length) %>
-              <%= image_tag photo, {class:"rounded-sm sizeAlbums", style:"position: absolute; z-index: index;"} %>
+              <%= image_tag photo, {class:"rounded-sm size-albums", style:"position: absolute; z-index: index;"} %>
             <% else %>
               <% a = (index*5).to_s %>
-              <%= image_tag photo, {class:"rounded-sm sizeAlbums", style:"position: absolute; z-index: index; transform: rotate("+ '8'+"deg)"} %>
+              <%= image_tag photo, {class:"rounded-sm size-albums", style:"position: absolute; z-index: index; transform: rotate("+ '8'+"deg)"} %>
             <% end %>
         <% end %>
         <p class="rounded-circle bg-secondary p-3" style="position: absolute; z-index: <%= album.images.length %> + 1; margin-top: 70px;"><b><%= album.images.length %><br><small>PHOTOS</small></b></p>

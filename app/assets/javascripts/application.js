@@ -20,7 +20,7 @@
 
 $(document).ready(function(){
 //nut like
-  $('img.btnLike').click(function(){
+  $('img.btn-like').click(function(){
     if($(this).attr('src')=="/assets/heart.png")
     {
       $(this).removeAttr("src");
