@@ -34,7 +34,11 @@
                             <% end %>
                             <div class="col-md-6 p-0 ">
                               <div class="mt-1">
-                                <%= render 'follow_home', user: photo.user %>
+                                <%unless current_user.id == photo.user.id %>
+                                  <div id="follow_form_feeds_photo_<%= photo.user.id %>">
+                                    <%= render 'follow_home', user: photo.user %>
+                                  </div>
+                                <% end %>
                                 <a href="#" class="nav-link d-inline-flex p-0">
                                   <img src="<%= photo.user.avatar %>" class="rounded-circle" id="avatarTop">
                                   <p class="text-primary pt-2 pl-2"><b><%= photo.user.full_name %></b></p>
@@ -69,32 +73,42 @@
                       <div class="col-sm-12 col-md-6 border rounded p-0 mt-2 d-flex" >
                         <div class="container-fluid m-2">
                           <div class="row">
-                            <div class="col-12 col-sm-12 col-lg-6 mt-3 size-albums" data-toggle="modal" data-target="#modalAlbum">
-                              <div class="sizePhotos d-flex justify-content-center m-0">
-                                <img class="rounded-sm size-photos" style="position: absolute; z-index: 3;" src="/assets/img2.jpeg">
-                                <img class="rounded-sm size-photos" style="position: absolute; z-index: 2; transform: rotate(5deg);" src="/assets/img4.jpeg">
-                                <img class="rounded-sm size-photos" style="position: absolute; z-index: 1; transform: rotate(10deg);" src="/assets/img5.jpg">
-                                <img class="rounded-sm size-photos" style="position: absolute; z-index: 0; transform: rotate(15deg);" src="/assets/img3.jpg">
+                            <%= link_to album_path(album), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#modal_album'} do %>
+                            <div class="col-12 col-sm-12 col-lg-6 mt-3 w-100" data-toggle="modal" data-target="#modalAlbum">
+                              <div class="size-photos d-flex justify-content-center m-0">
+                                <% album.images.each_with_index do |photo, index| %>
+                                  <% if (index != album.images.length - 1) %>
+                                    <% a = (index*3+3).to_s %>
+                                    <%= image_tag photo, {class:"rounded-sm size-photos", style:"position: absolute; z-index: index; transform: rotate("+ a +"deg)"} %>
+                                  <% else %>
+                                    <%= image_tag photo, {class:"rounded-sm size-photos", style:"position: absolute; z-index: index;"} %>
+                                    <% end %>
+                                  <% end %>
                               </div>
                             </div>
+                            <% end %>
                             <div class="col-lg-6 pr-0">
                               <div>
-                                <a href="#" class="nav-link d-inline-flex pl-0">
-                                  <img src="/assets/logoLogin.png" class="rounded-circle" id="avatarTop">
-                                  <p class="text-primary pt-2 pl-2"><b>Dinh Thuan</b></p>
+                                <%unless current_user.id == album.user.id %>
+                                  <div id="follow_form_feeds_album_<%= album.user.id %>">
+                                    <%= render 'follow_home', user: album.user %>
+                                  </div>
+                                <% end %>
+                                <a href="#" class="nav-link d-inline-flex p-0">
+                                  <img src="<%= album.user.avatar %>" class="rounded-circle" id="avatarTop">
+                                  <p class="text-primary pt-2 pl-2"><b><%= album.user.full_name %></b></p>
                                 </a>
-                              <button class="btn mr-1" id="btnHomeFollow"><b>Following</b></button>
                               </div>
-                              <div class="pr-2" data-toggle="modal" data-target="#modalAlbum">
-                                <h4><b>Title</b></h4>
-                                <p>Description: di choi voi ban be, ngam canh thien nhien</p>
+                              <div class="pr-2" data-toggle="modal" data-target="#modalAlbum" style="height: 160px;">
+                                <h4><b><%= album.title %></b></h4>
+                                <p><%= album.description %></p>
                               </div>
                               <div class="container d-inline pl-0 b-line">
                                 <div class="d-inline-flex">
                                   <img class="btn-like" src="/assets/like.png">
-                                  <p style="font-size: 20px; margin: 5px;"><b> 120</b></p>
+                                  <p style="font-size: 18px; margin: 5px;"><b> 120</b></p>
                                 </div>
-                                <p class=" pr-2 float-right"> 1/1/2019</p>
+                                <p class="pt-2 float-right "><%= album.created_at %></p>
                               </div>
                             </div>
                           </div>

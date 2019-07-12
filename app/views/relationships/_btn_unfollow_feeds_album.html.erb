@@ -1,5 +1,5 @@
 <%unless current_user.id == @user.id %>
-  <div id="follow_form_home_<%= @user.id %>">
+  <div id="follow_form_feeds_album_<%= @user.id %>">
     <% if current_user.following?(@user) %>
       <%= form_for(current_user.active_relationships.find_by(followed_id: @user.id),
                    html: { method: :delete },
