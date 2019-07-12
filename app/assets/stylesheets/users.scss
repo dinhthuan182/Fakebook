@@ -52,35 +52,38 @@ form input[type=email], form input[type=password], form input[type=text] {
   position: relative;
   width: 100px;
 }
-.js .input-file-trigger {
-  display: block;
-  padding: 5px 5px;
-  margin-top: 160px;
-  margin-left: 65px;
-  position: absolute;
-  z-index: 2;
-  background: white;
-  color: black;
-  font-size: 1em;
-  transition: all .4s;
-  cursor: pointer;
-  opacity: 0.4;
+.js {
+  .input-file-trigger {
+    display: block;
+    padding: 5px 5px;
+    margin-top: 160px;
+    margin-left: 65px;
+    position: absolute;
+    z-index: 2;
+    background: white;
+    color: black;
+    font-size: 1em;
+    transition: all .4s;
+    cursor: pointer;
+    opacity: 0.4;
+  }
+  .input-file {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100px;
+    opacity: 0;
+    padding: 14px 0;
+    cursor: pointer;
+  }
+  .input-file:hover + .input-file-trigger,
+  .input-file:focus + .input-file-trigger,
+  .input-file-trigger:hover,
+  .input-file-trigger:focus {
+    background: white;
+    opacity: 0.8;
+  }
 }
-.js .input-file {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100px;
-  opacity: 0;
-  padding: 14px 0;
-  cursor: pointer;
-}
-.js .input-file:hover + .input-file-trigger,
-.js .input-file:focus + .input-file-trigger,
-.js .input-file-trigger:hover,
-.js .input-file-trigger:focus {
-  background: white;
-  opacity: 0.8;
-}
+
 .login-form {
   margin: auto;
   margin-top: 5%;

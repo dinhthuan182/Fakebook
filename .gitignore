@@ -28,3 +28,4 @@
 
 /storage
 public/system/
+/config/database.yml

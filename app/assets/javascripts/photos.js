@@ -13,6 +13,7 @@ function showImagePhoto(){
     obj.readAsDataURL(this.files[0]);
   }
 };
+
 function clickClose(){
   $(this).parent().remove();
   $('.btn-upload').css({ display: "block" });

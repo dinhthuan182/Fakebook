@@ -1,6 +1,6 @@
 <!-- Modal Header -->
 <div class="modal-header">
-  <h4><b><%= @album.title %></b></h4>
+  <h4><b><%= album.title %></b></h4>
   <button type="button" class="close" data-dismiss="modal">×</button>
 </div>
 
@@ -9,7 +9,7 @@
   <div id="show_album" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ul class="carousel-indicators">
-      <% @album.images.each_with_index do |photo, index| %>
+      <% album.images.each_with_index do |photo, index| %>
         <% if index != 0 %>
           <li data-target="#show_album" data-slide-to=index></li>
         <% else %>
@@ -19,7 +19,7 @@
     </ul>
     <!-- The slideshow -->
     <div class="carousel-inner">
-      <% @album.images.each_with_index do |photo, index| %>
+      <% album.images.each_with_index do |photo, index| %>
         <% if index != 0 %>
           <div class="carousel-item">
             <img class="size-modal w-100" src="<%= url_for(photo) %>" alt="Los Angeles">
@@ -42,5 +42,5 @@
 </div>
 <!-- Modal footer -->
 <div class="modal-header">
-  <p><%= @album.description %></p>
+  <p><%= album.description %></p>
 </div>

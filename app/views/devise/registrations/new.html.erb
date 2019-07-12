@@ -1,3 +1,5 @@
+<% provide(:title, "Sign up") %>
+<%= render 'layouts/toolbar' %>
 <h1 class="text-center text-primary"><b>Fakebook Sign up</b></h1>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>

@@ -51,6 +51,7 @@ gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'gravatar_for', '~> 0.1.2'
 gem 'will_paginate', '>= 3.1'
 gem 'popper_js', '~> 1.9', '>= 1.9.9'
+gem 'will_paginate-bootstrap4'
 
 
 group :development, :test do

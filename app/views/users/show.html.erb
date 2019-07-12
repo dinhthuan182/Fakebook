@@ -1,4 +1,5 @@
-<% provide(:title, @user.first_name) %>
+<% provide(:title, @user.full_name) %>
+<%= render 'layouts/toolbar' %>
 <section class="container-fluid">
   <!--Tab feeds va discover-->
   <div class="row">
@@ -9,7 +10,12 @@
         <div class="row m-3">
           <img src="<%= @user.avatar %>" class="rounded-circle mr-2 size-my-photos" id="avatarMain" >
           <div>
-            <%= render 'follow_form'%>
+            <%unless current_user == @user %>
+              <%= render 'follow_form', user: @user %>
+            <% else %>
+              <a href="/users/edit" type="button" class="btn btn-primary mt-4 btn-radius"><b>Edit Profile</b></a>
+            <% end %>
+
             <h1 class="mt-3"><b><%= @user.full_name %></b></h1>
             <!-- Nav profile tabs -->
             <ul class="nav nav-tabs mt-3">
@@ -119,16 +125,9 @@
                       <%unless current_user.id == user.id %>
                         <div id="following_form_<%= user.id %>">
                           <% if current_user.following?(user) %>
-                            <%= form_for(current_user.active_relationships.find_by(followed_id: user.id),
-                                         html: { method: :delete },
-                                         remote: true) do |f| %>
-                              <%= f.submit "Unfollow", class: "btn btn-warning mt-4 following" %>
-                            <% end %>
+                            <%= render 'unfollow', user: user %>
                           <% else %>
-                            <%= form_for(current_user.active_relationships.build, remote: true) do |f| %>
-                              <div><%= hidden_field_tag :followed_id, user.id %></div>
-                              <%= f.submit "Follow", class: "btn mt-4 follow text-warning" %>
-                            <% end %>
+                            <%= render 'follow', user: user %>
                           <% end %>
                         </div>
                       <% end %>
@@ -162,16 +161,9 @@
                       <%unless current_user.id == user.id %>
                         <div id="follower_form_<%= user.id %>">
                           <% if current_user.following?(user) %>
-                            <%= form_for(current_user.active_relationships.find_by(followed_id: user.id),
-                                         html: { method: :delete },
-                                         remote: true) do |f| %>
-                              <%= f.submit "Unfollow", class: "btn btn-warning mt-4 following"%>
-                            <% end %>
+                            <%= render 'unfollow', user: user %>
                           <% else %>
-                            <%= form_for(current_user.active_relationships.build, remote: true) do |f| %>
-                              <div><%= hidden_field_tag :followed_id, user.id %></div>
-                              <%= f.submit "Follow", class: "btn mt-4 text-warning follow"%>
-                            <% end %>
+                            <%= render 'follow', user: user %>
                           <% end %>
                         </div>
                       <% end %>
