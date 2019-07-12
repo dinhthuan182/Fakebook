@@ -3,7 +3,7 @@
   <div class="row">
     <%= render '/layouts/tab_feeds' %>
     <article class="tab-content col-md-9 p-0 mt-5" >
-      <div class="col-sm-8 col-lg-9 bg-white">
+      <div class="col-sm-8 col-lg-10 bg-white">
         <div class="container-fluid">
           <div class="row">
             <div class="col-12">
@@ -11,7 +11,7 @@
               <hr>
             </div>
           </div>
-          <%= simple_form_for(@album) do |f| %>
+          <%= simple_form_for @album, multipart: true, remote: true do |f| %>
             <%= f.error_notification %>
             <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
             <div class="form-inputs">
@@ -38,7 +38,7 @@
                   <% if @album.images.exists? %>
                     <% @album.images.each do |image| %>
                       <% if image.variable? %>
-                        <div id="image-<%= image.id %>">
+                        <div id="image_<%= image.id %>">
                           <div class="float-left mt-2 mr-1">
                             <div ng-repeat="file in imagefinaldata" class="img-wrp">
                               <%= image_tag image, {class:"size-my-photos"} %>
