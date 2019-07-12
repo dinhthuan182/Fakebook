@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  # get "photo_modal/:id", to: 'home_page#photo_modal', as: 'photo_modal'
+  # get "album_modal/:id", to: 'home_page#album_modal'
+
+
   resources :albums do
     member do
       delete :delete_image_attachment
@@ -15,7 +20,6 @@ Rails.application.routes.draw do
   end
   resources :photos
   resources :relationships,       only: [:create, :destroy]
-
   root to: "home_page#feeds"
 
 end

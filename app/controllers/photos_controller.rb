@@ -10,7 +10,11 @@ class PhotosController < ApplicationController
   # GET /photos/1
   # GET /photos/1.json
   def show
-    @photos = current_user.photos.all
+    @photo = Photo.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /photos/new

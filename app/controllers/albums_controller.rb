@@ -11,7 +11,11 @@ class AlbumsController < ApplicationController
   # GET /albums/1
   # GET /albums/1.json
   def show
-    @albums = current_user.albums.all
+    @album = Album.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /albums/new

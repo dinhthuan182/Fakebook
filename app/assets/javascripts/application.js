@@ -18,6 +18,7 @@
 //= require_tree .
 //= require bootstrap
 //= require activestorage
+//= require popper
 
 import * as ActiveStorage from "activestorage";
 import "./direct_uploads.js"
