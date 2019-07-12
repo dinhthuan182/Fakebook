@@ -9,3 +9,5 @@ $("#followings_tab_<%= current_user.id %>").html('<b><%= current_user.followings
 $('#following_<%= @user.id %>_<%= current_user.id %>').remove();
 //xoa user trong tab followers khi unfollow
 $('#follower_<%= current_user.id %>_<%= @user.id %>').remove();
+//thay doi nut follow tai trang home page
+$("#follow_form_home_<%= @user.id %>").html("<%= escape_javascript(render('btn_unfollow_home', user: @user)) %>");

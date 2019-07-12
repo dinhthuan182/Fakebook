@@ -16,6 +16,6 @@ Rails.application.routes.draw do
   resources :photos
   resources :relationships,       only: [:create, :destroy]
 
-  root to: "home_page#index"
+  root to: "home_page#feeds"
 
 end

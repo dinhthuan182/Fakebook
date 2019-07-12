@@ -22,18 +22,12 @@ section {
   height: 25px;
   font-size: 8px;
 }
-.size-photos {
-  height: 250px;
-  width: 250px;
-}
+
 .size-image {
   height: 250px;
   border-radius:5px;
 }
-.size-albums {
-  height: 220px;
-  width: 220px;
-}
+
 .img-view {
   transition: transform .2s;
 }
@@ -56,23 +50,5 @@ section {
   transform: scale(1.1)
 }
 
-#btnHomeFollow {
-  border-radius: 28px;
-  width: 60px;
-  height: 23px;
-  font-size: 9px;
-  float: right;
-  background-color: #ffc107;
-  color: white;
-  border-color: #ffc107;
-}
-#btnHomeFollow:hover {
-  transform: scale(1.1)
-}
-.btn-like {
-  height: 35px;
-  width: 35px;
-}
-.b-line {
-  bottom: 5px;
-}
+
+

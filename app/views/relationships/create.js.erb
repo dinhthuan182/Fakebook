@@ -9,3 +9,6 @@ $("#followings_tab_<%= current_user.id %>").html('<b><%= current_user.followings
 $("#moreFollowing_<%= current_user.id %>").prepend("<%= escape_javascript(render('card_user_in_followings_tab')) %>");
 //tao card user trong tab follower cua user
 $("#moreFollowers_<%= @user.id %>").prepend("<%= escape_javascript(render('card_user_in_followers_tab')) %>");
+
+//thay doi nut follow tai trang home page
+$("#follow_form_home_<%= @user.id %>").html("<%= escape_javascript(render('btn_unfollow_home', user: @user)) %>");
