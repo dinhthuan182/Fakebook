@@ -1,0 +1,78 @@
+header {
+  overflow: hidden;
+  background-color: #184785;
+}
+section {
+  background-color: #bec2c5;
+}
+.follow {
+  border: 3px solid #ff8d00;
+  border-radius: 28px;
+}
+.following{
+  border: 3px solid #ff8d00;
+  border-radius: 28px;
+}
+#avatarTop {
+  height: 40px;
+  width: 40px;
+}
+#btnFollowCard {
+  width: 60px;
+  height: 25px;
+  font-size: 8px;
+}
+.size-photos {
+  height: 250px;
+  width: 250px;
+}
+.size-image {
+  height: 250px;
+  border-radius:5px;
+}
+.size-albums {
+  height: 220px;
+  width: 220px;
+}
+.img-view {
+  transition: transform .2s;
+}
+.img-view:hover{
+  transform: scale(1.1);
+}
+
+.img-view:active{
+  transform: scale(0.5);
+}
+.btn-follow {
+  border-radius: 28px;
+  width: 95px;
+  height: 35px;
+  background-color: #ffc107;
+  color: white;
+  border-color: #ffc107;
+}
+.btn-follow:hover {
+  transform: scale(1.1)
+}
+
+#btnHomeFollow {
+  border-radius: 28px;
+  width: 60px;
+  height: 23px;
+  font-size: 9px;
+  float: right;
+  background-color: #ffc107;
+  color: white;
+  border-color: #ffc107;
+}
+#btnHomeFollow:hover {
+  transform: scale(1.1)
+}
+.btn-like {
+  height: 35px;
+  width: 35px;
+}
+.b-line {
+  bottom: 5px;
+}

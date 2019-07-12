@@ -1,12 +1,21 @@
 Rails.application.routes.draw do
-  resources :albums
-  get 'users/show'
-  get 'home_page/index'
+  resources :albums do
+    member do
+      delete :delete_image_attachment
+    end
+  end
+  # get 'users/show'
+  # get 'home_page/index'
   devise_for :users, :controllers => {:registrations => "registrations"}
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :users, only: [:index, :show]
+  resources :users do
+    member do
+      get :followings, :followers
+    end
+  end
   resources :photos
-  # root to: "home_page#index"
-  root to: "photos#index"
+  resources :relationships,       only: [:create, :destroy]
+
+  root to: "home_page#index"
 
 end

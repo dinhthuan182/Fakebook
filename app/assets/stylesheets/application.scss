@@ -2,7 +2,7 @@
 @import "users";
 @import "photos";
 @import "albums";
-
+@import "style";
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -15,79 +15,11 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require font-awesome
  *= require jquery-ui/datepicker
  *= require_tree .
  *= require_self
  */
-header {
-  overflow: hidden;
-  background-color: #184785;
-}
-section {
-  background-color: #bec2c5;
-}
-
-#avatarTop {
-  height: 40px;
-  width: 40px;
-}
-#btnFollowCard {
-  width: 60px;
-  height: 25px;
-  font-size: 8px;
-}
-.sizePhotos {
-  height: 240px;
-  width: 240px;
-}
-.sizeAlbums {
-  height: 220px;
-  width: 220px;
-}
-.imgView {
-  transition: transform .2s;
-
-}
-.imgView:hover{
-  transform: scale(1.1);
-}
-
-.imgView:active{
-  transform: scale(0.5);
-}
-#btnFollow {
-  border-radius: 28px;
-  width: 95px;
-  height: 35px;
-  font-size: 15px;
-  background-color: #ffc107;
-  color: white;
-  border-color: #ffc107;
-}
-#btnFollow:hover {
-  transform: scale(1.1)
-}
-
-#btnHomeFollow {
-  border-radius: 28px;
-  width: 60px;
-  height: 23px;
-  font-size: 9px;
-  float: right;
-  background-color: #ffc107;
-  color: white;
-  border-color: #ffc107;
-}
-#btnHmoeFollow:hover {
-  transform: scale(1.1)
-}
-.btnLike {
-  height: 35px;
-  width: 35px;
-}
-.bLine {
-  bottom: 5px;
-}
 
 
 
@@ -95,96 +27,6 @@ section {
 
 
 
-
-/*user*/
-
-h2, h1 {
-  margin-top:5%;
-}
-.sizeMyPhotos {
-  height: 210px;
-  width: 210px;
-  border-radius:5px;
-}
-.sizeMyAlbums {
-  height: 210px;
-  width: 210px;
-}
-.btnRadius {
-  border-radius: 28px;
-}
-.formSignUp {
-  margin: auto;
-  margin-top: 20px;
-  padding-top:30px;
-  width: 25%;
-  height: 30%;
-  border: 1px solid #A0A0A0;
-  border-radius: 10px;
-  background-color: #ECECEC;
-}
-form input[type=email], form input[type=password], form input[type=text] {
-  border: 1px solid #A0A0A0;
-  border-radius: 5px;
-}
-.fSignUp {
-  margin: 3% 10%;
-}
-.input-file-container {
-  position: relative;
-  width: 100px;
-}
-.js .input-file-trigger {
-  display: block;
-  padding: 5px 5px;
-  margin-top: 160px;
-  margin-left: 65px;
-  position: absolute;
-  z-index: 2;
-  background: white;
-  color: black;
-  font-size: 1em;
-  transition: all .4s;
-  cursor: pointer;
-  opacity: 0.4;
-}
-.js .input-file {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100px;
-  opacity: 0;
-  padding: 14px 0;
-  cursor: pointer;
-}
-.js .input-file:hover + .input-file-trigger,
-.js .input-file:focus + .input-file-trigger,
-.js .input-file-trigger:hover,
-.js .input-file-trigger:focus {
-  background: white;
-  opacity: 0.8;
-}
-.loginForm {
-  margin: auto;
-  margin-top: 5%;
-  width: 25%;
-  height: 50%;
-  border: 1px solid #A0A0A0;
-    border-radius: 10px;
-    text-align: center;
-    background-color: #ECECEC;
-}
-.loginForm input[type=email], .loginForm input[type=password] {
-  width: 90%;
-  border: 1px solid #A0A0A0;
-  border-radius: 5px;
-  margin-left: 5%;
-}
-.loginForm h2 {
-  color:#184785;
-}
-.newAccount {
-  text-align: center;
-}
 
 
 

@@ -1,0 +1,11 @@
+<%unless current_user.id == @user.id %>
+  <div id="follow_form_<%= @user.id %>">
+    <% if current_user.following?(@user) %>
+      <%= render 'unfollow' %>
+    <% else %>
+      <%= render 'follow' %>
+    <% end %>
+  </div>
+<% else %>
+  <a href="/users/edit" type="button" class="btn btn-primary mt-4 btn-radius"><b>Edit Profile</b></a>
+<% end %>

@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+
     <title>Focobook</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -90,9 +93,9 @@
       </div>
       <% if !current_user.nil? %>
         <div class="col-sm-4 col-md-2">
-          <a href="/users/show" class="nav-link d-inline-flex text-white m-0 float-right">
+          <a href="<%= user_path(current_user.id) %>" class="nav-link d-inline-flex text-white m-0 float-right">
             <img src="<%=current_user.avatar.url() %>" class="rounded-circle mr-2" id="avatarTop">
-            <p class="text-white pt-2 m-0"><b> <%= current_user.last_name.to_s %><%= current_user.first_name.to_s %> </b></p>
+            <p class="text-white pt-2 m-0"><b><%= current_user.full_name %></b></p>
           </a>
         </div>
         <div class="col-sm-1 col-md-1">
@@ -112,11 +115,11 @@
     </header>
 
     <% if notice %>
-  <div id="notice" class="alert alert-info alert-dismissible" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <%= notice %>
-  </div>
-<% end %>
+      <div id="notice" class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <%= notice %>
+      </div>
+    <% end %>
 
     <%= yield %>
   </body>

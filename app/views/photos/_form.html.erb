@@ -4,8 +4,8 @@
       <%= render '/layouts/tab_feeds' %>
 
       <article class="tab-content col-md-10 p-0 mt-5" >
-         <div class="col-sm-8 col-lg-9" style="background-color: white">
-            <div class="container">
+         <div class="col-sm-8 col-lg-9 bg-white">
+            <div class="container-fluid">
               <div class="row">
                 <div class="col-12">
                   <h3 class="pt-4"><b>New Photo</b></h3>
@@ -26,11 +26,7 @@
 
                       <div class="form-group w-50">
                         <label>Sharing Mode</label>
-                        <%= f.select(:sharing_mode, class:"form-control") do %>
-                          <% [['Public', true], ['Private', false]].each do |c| -%>
-                            <%= content_tag(:option, c.first, value: c.last) %>
-                          <% end %>
-                        <% end %>
+                        <%= f.select(:sharing_mode, options_for_select([['Public', true], ['Private', false]]), {}, {class: "form-control w-50"}) %>
                       </div>
 
                     </div>
@@ -45,33 +41,35 @@
 
                   <div class="row">
                     <div class="col images">
-                      <div class="upload-btn-wrapper float-left sizeMyPhotos">
-                        <% if @photo.image.nil? %>
-                        <div>
-                          <button class="btnUpload"><img src="/assets/plus4.png"></button>
-                          <%= f.file_field :image, class:"btnUpload", onchange:"showImagePhoto.call(this)" %>
-                        </div>
-                        <% else %>
-                        <div class="img float-left mt-2 mr-1">
+                      <div class="upload-btn-wrapper float-left size-my-photos">
+                        <% if !@photo.image.attached? %>
+                          <div class="btn-upload" style="display: block;">
+                            <button class="btn-upload"><img src="/assets/plus4.png"></button>
+                            <%= f.file_field :image, class:"btn-upload", onchange:"showImagePhoto.call(this)" %>
+                          </div>
+                      <% else %>
                           <div class="img float-left mt-2 mr-1">
-                            <div ng-repeat="file in imagefinaldata" class="img_wrp sizeMyPhotos">
-                              <%= image_tag @photo.image.variant(resize: "300x300") if @photo.image.attached? %>
-                              <img class="btnClose m-1" src="/assets/close.png" onclick="clickClose.call(this)"style="width:30px; height: 30px" />
-                            </div>
-                            <div class="btnUpload" style="display: none;">
-                            <button class="btnUpload"><img src="/assets/plus4.png"></button>
-                              <%= f.label :image, class:"btnUpload" %>
-                              <%= f.file_field :image, class:"btnUpload", onchange:"showImagePhoto.call(this)" %>
+                            <div class="img float-left mt-2 mr-1">
+                              <div ng-repeat="file in imagefinaldata" class="img-wrp size-my-photos">
+                                <%= image_tag @photo.image.variant(resize: "300x300") if @photo.image.attached? %>
+                                <img class="btn-close m-1" src="/assets/close.png" onclick="clickClose.call(this)" />
+                              </div>
+                              <div class="btn-upload" style="display: none;">
+                              <button class="btn-upload"><img src="/assets/plus4.png"></button>
+                                <%= f.file_field :image, class:"btn-upload", onchange:"showImagePhoto.call(this)" %>
+                              </div>
                             </div>
                           </div>
-                        </div>
                         <% end %>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="form-actions row mt-5 m-1">
-                  <%= f.button :submit, "Save", class:"btn btnSubmit mr-2" %>
+                  <%= f.button :submit, "Save", class:"btn btn-submit mr-2" %>
+                  <%= link_to photo, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                  <button class=" btn btn-delete ml-2"> <i class="far fa-trash-alt"></i> Delete</button>
+                  <% end %>
                 </div>
               <% end %>
             </div>

@@ -1,0 +1,11 @@
+// render nut unfollow
+$("#follow_form_<%= @user.id %>").html("<%= escape_javascript(render('users/unfollow')) %>");
+$("#following_form_<%= @user.id %>").html("<%= escape_javascript(render('users/unfollow')) %>");
+$("#follower_form_<%= @user.id %>").html("<%= escape_javascript(render('users/unfollow')) %>");
+// cap nhat tab followers va following
+$("#followers_tab_<%= @user.id %>").html('<b><%= @user.followers.count %></b><small> <b>FOLLOWERS</b></small>');
+$("#followings_tab_<%= current_user.id %>").html('<b><%= current_user.followings.count %></b><small> <b>FOLLOWING</b></small>');
+//tao card user trong tab following cua current user
+$("#moreFollowing_<%= current_user.id %>").prepend("<%= escape_javascript(render('card_user_in_followings_tab')) %>");
+//tao card user trong tab follower cua user
+$("#moreFollowers_<%= @user.id %>").prepend("<%= escape_javascript(render('card_user_in_followers_tab')) %>");

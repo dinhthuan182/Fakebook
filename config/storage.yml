@@ -4,7 +4,7 @@ test:
 
 local:
   service: Disk
-  root: <%= Rails.root.join("storage") %>
+  root: <%= File.dirname("~/Documents/TSNN2019/TraningRuby2019/FinalApp/.gitignore") %>
 
 # Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:
@@ -31,4 +31,4 @@ local:
 # mirror:
 #   service: Mirror
 #   primary: local
-#   mirrors: [ amazon, google, microsoft ]
+#   mirrors: [ amazon, google, microsoft ]x`

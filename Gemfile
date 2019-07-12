@@ -37,6 +37,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'bootstrap','>=4.3.1'
+gem 'font-awesome-rails'
 # gem 'bootstrap-sass', '3.3.6'
 gem 'jquery-rails','4.3.5'
 gem 'jquery-ui-rails'
@@ -46,6 +47,10 @@ gem "paperclip", "~> 5.1"
 gem 'simple_form'
 gem 'devise'
 gem 'mini_magick'
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+gem 'gravatar_for', '~> 0.1.2'
+gem 'will_paginate', '>= 3.1'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

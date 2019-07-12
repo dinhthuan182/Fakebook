@@ -2,8 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.btnCloseA {
+.btn-close-album {
   position: absolute;
   top: 0;
   right: 0;
+  width: 30px;
+  height: 30px;
 }
