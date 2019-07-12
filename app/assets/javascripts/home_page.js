@@ -17,18 +17,4 @@ $(document).ready(function(){
       $(this).attr("src","/assets/heart.png");
     }
   });
-//nut follow
-  $('button#btnFollow').click(function(){
-    if($(this).text() == "Follow"){
-      $(this).html("<b>Following</b>");
-      $(this).css("background-color", "#ffc107");
-      $(this).css("border-color", "white");
-      $(this).css("color", "white");
-    }else{
-      $(this).html("<b>Follow</b>");
-      $(this).css("background-color", "white");
-      $(this).css("border-color", "#ffc107");
-      $(this).css("color", "#ffc107");
-    }
-  });
 });

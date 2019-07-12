@@ -1,0 +1,39 @@
+.size-photos {
+  height: 230px;
+  width: 230px;
+}
+.size-albums {
+  height: 250px;
+  width: 250px;
+}
+.btn-like {
+  height: 35px;
+  width: 35px;
+}
+.b-line {
+  bottom: 5px;
+}
+
+.follow-home {
+  width: 76px;
+  height: 33px;
+  border: 3px solid #ff8d00;
+  color: #ff8d00;
+  border-radius: 28px;
+  font-size: 12px;
+  float: right;
+}
+.following-home{
+  width: 76px;
+  height: 33px;
+  border: 3px solid #ff8d00;
+  background-color: #ff8d00;
+  border-radius: 28px;
+  font-size: 9px;
+  color: white;
+  float: right;
+}
+
+.follow-home:hover {
+  transform: scale(1.1)
+}
