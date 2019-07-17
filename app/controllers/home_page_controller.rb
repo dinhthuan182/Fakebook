@@ -1,11 +1,13 @@
 class HomePageController < ApplicationController
   before_action :authenticate_user!
   def feeds
-    @photos = Photo.except(current_user).all.order("created_at DESC").paginate(page: params[:page], per_page: 10)
-    @albums = Album.except(current_user).all.order("created_at DESC").paginate(page: params[:page], per_page: 10)
+    @users = current_user.followings.ids
+    @photos_feeds = Photo.where(user_id: @users).where(sharing_mode: true).paginate(page: params[:page], per_page: 10)
+    @albums_feeds = Album.where(user_id: @users).where(sharing_mode: true).paginate(page: params[:page], per_page: 10)
   end
 
   def discovers
-
+    @photos_discovers = Photo.where(sharing_mode: true).where.not(user_id: current_user).paginate(page: params[:page], per_page: 10)
+    @albums_discovers = Album.where(sharing_mode: true).where.not(user_id: current_user).paginate(page: params[:page], per_page: 10)
   end
 end

@@ -16,12 +16,10 @@
             <p class="text-primary pt-2 pl-2"><b><%= photo.user.full_name %></b></p>
           </a>
         </div>
-        <%= link_to photo_path(photo), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal_photo'} do %>
-          <div style="height: 140px;">
-            <h4><b><%= photo.title %></b></h4>
-            <p><%= photo.description %></p>
-          </div>
-        <% end %>
+        <div style="height: 140px;">
+          <h4><b><%= photo.title %></b></h4>
+          <p><%= photo.description %></p>
+        </div>
         <div class="container d-inline pl-0 b-line">
           <div class="d-inline-flex">
             <img class="btn-like" src="/assets/like.png">

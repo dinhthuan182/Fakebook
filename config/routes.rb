@@ -17,6 +17,6 @@ Rails.application.routes.draw do
 
   resources :photos
   resources :relationships,       only: [:create, :destroy]
-
+  get 'discovers', to: 'home_page#discovers'
 
 end

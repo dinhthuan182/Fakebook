@@ -24,14 +24,17 @@
   float: right;
 }
 .following-home{
-  width: 76px;
-  height: 33px;
+  width: 65px;
+  height: 27px;
   border: 3px solid #ff8d00;
   background-color: #ff8d00;
   border-radius: 28px;
-  font-size: 9px;
+  font-size: 11px;
   color: white;
   float: right;
+  text-align: center;
+  margin:5px;
+  padding:5px;;
 }
 
 .follow-home:hover {
