@@ -32,7 +32,7 @@ class AlbumsController < ApplicationController
   # POST /albums.json
   def create
     @album = current_user.albums.new(album_params)
-
+    # @album.images.attach(params[:album][:images])
     respond_to do |format|
       if @album.save
         format.html { redirect_to current_user, notice: 'Album was successfully created.' }

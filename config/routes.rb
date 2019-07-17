@@ -18,5 +18,5 @@ Rails.application.routes.draw do
   resources :photos
   resources :relationships,       only: [:create, :destroy]
 
-
+  get '/admin', to: "admin#index"
 end

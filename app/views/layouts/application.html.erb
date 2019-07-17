@@ -10,11 +10,10 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= custom_bootstrap_flash %>
   </head>
 
   <body class="m-0">
     <%= yield %>
   </body>
-    <%= javascript_include_tag "application" %>
-    <%= custom_bootstrap_flash %>
 </html>
