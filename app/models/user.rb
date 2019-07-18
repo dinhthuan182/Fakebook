@@ -9,11 +9,8 @@ class User < ApplicationRecord
   has_many :passive_relationships, class_name:  "Relationship",
                                  foreign_key: "followed_id",
                                  dependent:   :destroy
-
   has_many :followings, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
-
-
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -22,9 +19,11 @@ class User < ApplicationRecord
 
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100#" }, :default_url => "/assets/logoLogin.png"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
   def full_name
     [first_name, last_name].select(&:present?).join(' ').titleize
   end
+
   # Follows a user.
   def follow(other_user)
     followings << other_user
@@ -39,5 +38,4 @@ class User < ApplicationRecord
   def following?(other_user)
     followings.include?(other_user)
   end
-
 end

@@ -1,4 +1,5 @@
 class AlbumsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_album, except: [:index, :new, :create, :delete_image_attachment]
   before_action :set_album, only: [:show, :edit, :update, :destroy]
 
