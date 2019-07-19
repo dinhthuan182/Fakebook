@@ -1,0 +1,105 @@
+<% provide(:title, "admin page") %>
+<%= render 'layouts/toolbar' %>
+<section class="container-fluid">
+    <div class="row ">
+      <div class="col-md-2">
+        <div class="container mt-3">
+          <div class="navbar navbar-expand-md navbar-light bg-lignt p-0">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class=" collapse navbar-collapse p-0" id="collapsibleNavbar">
+              <ul class="navbar-nav nav nav-tabs flex-column">
+                <li class="nav-item p-0">
+                  <a class="nav-link text-primary" data-toggle="tab" href="#manage_photos"><b>Manage Photos</b></a>
+                </li>
+                <li class="nav-item p-0">
+                  <a class="nav-link text-primary" data-toggle="tab" href="#manage_albums"><b>Manage Albums</b></a>
+                </li>
+                <li class="nav-item p-0">
+                  <a class="nav-link text-primary" data-toggle="tab" href="#manage_users"><b>Manage Users</b></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <article class="tab-content col-md-8 p-0 bg-white pt-5" >
+        <!--tab managePhotos-->
+        <div id="manage_photos" class="container tab-pane active">
+          <div class="row">
+            <% @photos.each do |photo|  %>
+              <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center">
+                <div class="size-photos d-flex justify-content-center m-2 text-center">
+                  <img class="rounded-sm size-photos" style="position: absolute; z-index: 0;" src="<%= url_for(photo.image) %>">
+                  <p class="rounded bg-secondary p-1" style="width: 230px; position: absolute; z-index: 1; margin-top: 0px; opacity: 0.8"><%= photo.title %></b></p>
+                  <i class="fa fa-edit bg-secondary" style="font-size: 28px; position: absolute; z-index: 2; margin-left: 190px; margin-top: 0px; opacity: 0.8"></i>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <div class="d-flex justify-content-center mt-3">
+            <%= will_paginate @photos, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, previous_label:"<<", next_label: ">>", inner_window: 0, outer_window: 0, remote: true %>
+          </div>
+        </div>
+
+        <!--tab manageAlbums-->
+        <div id="manage_albums" class="container tab-pane fade mt-3">
+          <div class="row">
+            <% @albums.each do |album| %>
+              <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center">
+                <div class="size-photos d-flex justify-content-center m-4 text-center">
+                  <% album.images.each_with_index do |photo, index| %>
+                    <% if (index != album.images.length - 1) %>
+                      <% a = ((album.images.length.to_i - index)*3).to_s %>
+                      <%= image_tag photo, {class:"rounded-sm size-photos", style:"position: absolute; z-index: index; transform: rotate("+ a +"deg)"} %>
+                    <% else %>
+                      <%= image_tag photo, {class:"rounded-sm size-photos", style:"position: absolute; z-index: index;"} %>
+                    <% end %>
+                  <% end %>
+                  <p class="rounded bg-secondary p-1" style="width: 230px; position: absolute; z-index: album.images.length + 1; margin-top: 0px; opacity: 0.8"><%= album.title %></b></p>
+                  <i class="fa fa-edit bg-secondary" style="font-size: 28px; position: absolute; z-index: album.images.length + 2; margin-left: 190px; margin-top: 0px; opacity: 0.8"></i>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <div class="d-flex justify-content-center mt-3">
+            <%= will_paginate @albums, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, previous_label:"<<", next_label: ">>", inner_window: 0, outer_window: 0, remote: true %>
+          </div>
+        </div>
+
+        <!--tab ManageUsers-->
+        <div id="manage_users" class="container tab-pane fade">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">First name</th>
+                <th scope="col">Last name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Last Login</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @users.each do |user| %>
+                <% if !user.admin %>
+                  <tr>
+                    <th scope="row"><%= user.first_name %></th>
+                    <td><%= user.last_name %></td>
+                    <td><%= user.email %></td>
+                    <td><%= user.last_sign_in_at %></td>
+                    <td><button class="btn btn-success mr-2">Edit</button><button class="btn btn-danger">Delete</button></td>
+                  </tr>
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
+          <div class="d-flex justify-content-center mt-3">
+            <%= will_paginate @users, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, previous_label:"<<", next_label: ">>", inner_window: 0, outer_window: 0, remote: true %>
+          </div>
+        </div>
+        <!--end tab ManageUsers-->
+      </article>
+    </div>
+  </section>

@@ -46,7 +46,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem "paperclip", "~> 5.1"
 gem 'simple_form'
 gem 'devise'
-gem 'mini_magick'
+gem "mini_magick", ">= 4.9.4"
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'gravatar_for', '~> 0.1.2'
 gem 'will_paginate', '>= 3.1'
