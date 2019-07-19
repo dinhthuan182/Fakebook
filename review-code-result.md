@@ -1,6 +1,17 @@
 Reviewer: ChienTX / Trainee: ThuanVD
 -----
 
+### Jul 19, 2019
+
++ tên hàm tối nghĩa: `clickCloseA`
++ sao không dùng jQuery ở đây? `document.querySelector("html").classList.add('js');`
++ đã chuyển sang dùng application.scss và import bootstrap thì nên bỏ nguyên khúc require phía dưới đi
++ admin_controller: số 10 nên được đặt thành Constant
++ `where(sharing_mode: true)` -> nên đưa thành scope trong model
++ nên chuyển qua carrierwave để dùng thử cho quen
++ `[first_name, last_name].select(&:present?).join(' ').titleize` nên chuyển thành `[first_name, last_name].compact.join(' ').titleize`
++
+
 ### Jul 12, 2019
 
 + Trong file `application.js` không nên viết code xử lý trong đó, nên tách ra file riêng
