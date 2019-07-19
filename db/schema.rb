@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_12_081701) do
+ActiveRecord::Schema.define(version: 2019_07_19_070442) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -43,15 +43,13 @@ ActiveRecord::Schema.define(version: 2019_07_12_081701) do
     t.index ["user_id"], name: "index_albums_on_user_id"
   end
 
-  create_table "likes", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "post_id"
     t.string "likeable_type"
     t.bigint "likeable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["likeable_type", "likeable_id"], name: "index_likes_on_likeable_type_and_likeable_id"
-    t.index ["post_id"], name: "index_likes_on_post_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
@@ -78,7 +76,7 @@ ActiveRecord::Schema.define(version: 2019_07_12_081701) do
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "first_name", default: "", null: false
     t.string "last_name", default: "", null: false
-    t.boolean "activated"
+    t.boolean "activated", default: true
     t.string "avatar_file_name"
     t.string "avatar_content_type"
     t.integer "avatar_file_size"
