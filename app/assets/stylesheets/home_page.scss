@@ -1,10 +1,10 @@
 .size-photos {
-  height: 230px;
-  width: 230px;
+  height: 270px;
+  width: 270px;
 }
 .size-albums {
-  height: 250px;
-  width: 250px;
+  height: 268px;
+  width: 300px;
 }
 .btn-like {
   height: 35px;
@@ -36,4 +36,10 @@
 
 .follow-home:hover {
   transform: scale(1.1)
+}
+.style-post {
+  height: 190px;
+}
+.like-number {
+  font-size: 24px;
 }

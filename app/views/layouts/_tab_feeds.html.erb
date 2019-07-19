@@ -7,10 +7,10 @@
       <div class=" collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav nav nav-tabs flex-column">
           <li class="nav-item">
-            <a class="nav-link text-primary" data-toggle="tab" href="#feedsPage"><b>Feeds</b></a>
+            <b><%= link_to "Feeds", feeds_path, { class: "nav-link text-primary" } %></b>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-primary" data-toggle="tab" href="#discoverPage"><b>Discover</b></a>
+            <b><%= link_to "Discovers", root_path, { class: "nav-link text-primary" } %></b>
           </li>
         </ul>
       </div>
