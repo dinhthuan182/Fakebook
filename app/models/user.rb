@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :photos
   has_many :albums
-
+  has_many :likes, dependent: :destroy
   #for button follow in profile page
   has_many :active_relationships, class_name:  "Relationship",
                                 foreign_key: "follower_id",
@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :followings, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
+  has_many :photos, through: :likes, source: :likeable, source_type: 'Photo'
+  has_many :albums, through: :likes, source: :likeable, source_type: 'Album'
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
