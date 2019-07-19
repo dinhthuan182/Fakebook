@@ -29,7 +29,7 @@
                 <div class="row d-flex">
                   <% @photos_feeds.each do |photo| %>
                     <% if !photo.sharing_mode == false %>
-                      <%= render 'photo_tab', photo: photo %>
+                      <%= render 'photo_tab', photo: photo, home: false %>
                     <% end %>
                   <% end %>
                 </div>
@@ -43,7 +43,7 @@
                 <div class="row">
                   <% @albums_feeds.each do |album| %>
                     <% if !album.sharing_mode == false %>
-                      <%= render 'album_tab', album: album %>
+                      <%= render 'album_tab', album: album, home: false %>
                     <% end %>
                   <% end %>
                 </div> <!-- end tab albumFeeds -->

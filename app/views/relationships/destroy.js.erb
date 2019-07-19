@@ -10,5 +10,5 @@ $('#following_<%= @user.id %>_<%= current_user.id %>').remove();
 //xoa user trong tab followers khi unfollow
 $('#follower_<%= current_user.id %>_<%= @user.id %>').remove();
 //thay doi nut follow tai trang home page
-$("#follow_form_feeds_photo_<%= @user.id %>").html("<%= escape_javascript(render('btn_unfollow_feeds_photo', user: @user)) %>");
-$("#follow_form_feeds_album_<%= @user.id %>").html("<%= escape_javascript(render('btn_unfollow_feeds_album', user: @user)) %>");
+$("div#follow_form_feeds_photo_<%= @user.id %>").html("<%= escape_javascript(render('btn_unfollow_feeds_photo', user: @user)) %>");
+$("div#follow_form_feeds_album_<%= @user.id %>").html("<%= escape_javascript(render('btn_unfollow_feeds_album', user: @user)) %>");

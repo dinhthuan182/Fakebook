@@ -19,10 +19,12 @@
         <div>
           <%unless current_user.id == album.user.id %>
             <div id="follow_form_feeds_album_<%= album.user.id %>">
+              <% if home %>
               <%= render 'follow_home', user: album.user %>
+              <% end %>
             </div>
           <% end %>
-          <a href="#" class="nav-link d-inline-flex p-0">
+          <a href="<%= user_path(album.user) %>" class="nav-link d-inline-flex p-0">
             <img src="<%= album.user.avatar %>" class="rounded-circle" id="avatar_top">
             <p class="text-primary pt-2 pl-2"><b><%= album.user.full_name %></b></p>
           </a>
@@ -33,8 +35,8 @@
         </div>
         <div class="container d-inline pl-0 b-line">
           <div class="d-inline-flex">
-            <img class="btn-like" src="/assets/like.png">
-            <p style="font-size: 18px; margin: 5px;"><b> 120</b></p>
+            <%= render 'like_form_album', post: album %>
+            <p id="count_album_<%= album.id %>" style="font-size: 18px; margin: 5px;"><b> <%= album.likes.size %></b></p>
           </div>
           <p class="pt-2 float-right "><%= album.created_at %></p>
         </div>
