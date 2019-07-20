@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   root to: "home_page#discovers"
 
   get '/feeds', to: "home_page#feeds"
-  get '/admin', to: "admin#index"
+  get '/managers/photo', to: "admin#photo"
+  get '/managers/album', to: "admin#album"
+  get '/managers/user', to: "admin#user"
 
   devise_for :users, :controllers => {:registrations => "registrations"}
 

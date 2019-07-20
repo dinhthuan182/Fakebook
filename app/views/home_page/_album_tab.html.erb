@@ -38,7 +38,7 @@
             <%= render 'like_form_album', post: album %>
             <p id="count_album_<%= album.id %>"class="like-number"><b> <%= album.likes.size %></b></p>
           </div>
-          <p class="pt-2 float-right "><%= album.created_at %></p>
+          <small class="pt-4 float-right "><%= album.created_at.strftime("%I:%M %p %-d/%-m/%Y") %></small>
         </div>
       </div>
     </div>
