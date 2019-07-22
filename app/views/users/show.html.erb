@@ -20,10 +20,10 @@
             <!-- Nav profile tabs -->
             <ul class="nav nav-tabs mt-3">
               <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#photosProfile"><b><%= @user.photos.count%></b><small> <b>PHOTOS</b></small></a>
+                <a class="nav-link active" data-toggle="tab" href="#photosProfile"><b><%= @get_photos.count %></b><small> <b>PHOTOS</b></small></a>
               </li>
               <li class="nav-item d-inline-flex">
-                <a class="nav-link" data-toggle="tab" href="#albumsProfile"><b><%= @user.albums.count %></b><small> <b>ALBUMS</b></small></a>
+                <a class="nav-link" data-toggle="tab" href="#albumsProfile"><b><%= @get_albums.count %></b><small> <b>ALBUMS</b></small></a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#followingsProfile" id="followings_tab_<%= @user.id %>"><b><%= @user.followings.count %></b><small> <b>FOLLOWINGS</b></small></a>
@@ -40,40 +40,42 @@
 
       <div class="tab-content container-fluid p-4 ml-0">
         <div id="photosProfile" class=" tab-pane active">
-          <%if current_user.id == @user.id %>
+          <%if current_user == @user %>
             <div class="row d-flex flex-row-reverse p-3">
               <a class="btn btn-success float-right btn-radius" href="/photos/new"><b>Add Photo</b></a>
             </div>
           <% end %>
           <div class="row">
-            <% @user.photos.each do |photo| %>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center">
-              <div class="d-flex justify-content-center text-center size-image">
-                <%= image_tag photo.image , {class:"rounded-sm size-my-photos", style:"position: absolute; z-index: 0;"} if photo.image.attached?%>
-                <% if photo.sharing_mode? %>
-                  <i class="fas fa-unlock fa-lg rounded-circle bg-secondary p-2 mt-1 btn-lock" ></i>
-                  <% else %>
-                  <i class="fas fa-lock fa-lg rounded-circle bg-secondary p-2 mt-1 btn-lock" ></i>
-                <% end %>
-                <%if current_user.id == @user.id %>
-                  <%= link_to 'EDIT', edit_photo_path(photo), class:"btn btn-secondary btn-edit" %>
-                <% end %>
-              </div>
-              <div class="d-flex justify-content-center">
-                <p><%= photo.title %></p>
-              </div>
-            </div>
-          <% end %>
+            <% if @get_photos.any? %>
+              <% @get_photos.each do |photo| %>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center">
+                  <div class="d-flex justify-content-center text-center size-image">
+                    <%= image_tag photo.image , {class:"rounded-sm size-my-photos", style:"position: absolute; z-index: 0;"} if photo.image.attached?%>
+                    <% if photo.sharing_mode? %>
+                      <i class="fas fa-unlock fa-lg rounded-circle bg-secondary p-2 mt-1 btn-lock" ></i>
+                      <% else %>
+                      <i class="fas fa-lock fa-lg rounded-circle bg-secondary p-2 mt-1 btn-lock" ></i>
+                    <% end %>
+                    <%if current_user.id == @user.id %>
+                      <%= link_to 'EDIT', edit_photo_path(photo), class:"btn btn-secondary btn-edit" %>
+                    <% end %>
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <p><%= photo.title %></p>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
           </div>
         </div><!--end tab show photo-->
         <div id="albumsProfile" class="tab-pane fade">
-          <%if current_user.id == @user.id %>
+          <%if current_user == @user %>
             <div class="row d-flex flex-row-reverse p-3">
               <a class="btn btn-success float-right btn-radius" href="/albums/new"><b>Add Albums</b></a>
             </div>
           <% end %>
           <div class="row">
-            <% @user.albums.each do |album| %>
+            <% @get_albums.each do |album| %>
               <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center">
                 <div class="d-flex justify-content-center m-0 text-center size-image">
                   <% album.images.each_with_index do |photo, index| %>

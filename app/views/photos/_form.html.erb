@@ -1,3 +1,4 @@
+<% provide(:title, "New Photo") %>
 <%= render 'layouts/toolbar' %>
 <section class="container-fluid">
     <!--Tab feeds va discover-->
@@ -15,8 +16,16 @@
               </div>
 
               <%= simple_form_for(@photo) do |f| %>
-                <%= f.error_notification %>
-                <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+                <% if @photo.errors.any? %>
+                  <div id="error_explanation">
+                    <h4><%= pluralize(@photo.errors.count, "error") %> prohibited this user from being saved:</h4>
+                    <ul>
+                    <% @photo.errors.full_messages.each do |msg| %>
+                      <li><%= msg %></li>
+                    <% end %>
+                    </ul>
+                  </div>
+                <% end %>
                 <div class="form-inputs">
                   <div class="row">
                     <div class="col-12 col-sm-12 col-lg-6">

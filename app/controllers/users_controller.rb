@@ -1,16 +1,15 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_user, only: [:edit, :update, :show, :destroy ]
   def index
     @users = User.all
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
 
    def update
-     @user = User.find(params[:id])
      if @user.update(user_params)
        redirect_to :admin
      else
@@ -19,15 +18,11 @@ class UsersController < ApplicationController
    end
 
   def show
-    if params[:id].nil? && current_user
-      @user = current_user
-    else
-      @user = User.find(params[:id])
-    end
+    @get_photos = Photo.where(user_id: @user.id)
+    @get_albums = Album.where(user_id: @user.id)
   end
 
   def destroy
-    @user = User.find(params[:id])
     if @user.present?
       @user.destroy
     end
@@ -46,6 +41,10 @@ class UsersController < ApplicationController
     @user  = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page])
     # render 'show_follow'
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 
   def user_params
