@@ -1,0 +1,148 @@
+<section class="container-fluid">
+    <!--Tab feeds va discover-->
+    <div class="row">
+      <%= render 'layouts/tab_feeds' %>
+
+      <article class="tab-content col-md-8 p-0 mt-3  bg-white" >
+        <!--tab profile-->
+          <div class="container-fluid p-0">
+            <div class="row m-3">
+              <img src="<%= @user.avatar %>" class="rounded-circle mr-2 sizeMyPhotos" id="avatarMain" >
+              <div>
+                <a href="/users/edit" type="button" class="btn btn-primary mt-4 btnRadius"><b>Edit Profile</b></a>
+                <h1 class="mt-3"><b><%= @user.last_name %><%= @user.first_name %></b></h1>
+                <!-- Nav profile tabs -->
+                <ul class="nav nav-tabs mt-3">
+                  <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#photosProfile"><b>111<small>PHOTOS</small></b></a>
+                  </li>
+                  <li class="nav-item d-inline-flex">
+                    <a class="nav-link" data-toggle="tab" href="#albumsProfile"><b>222<small>ALBUMS</small></b></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#followingsProfile"><b>333<small>FOLLOWINGS</small></b></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#followersProfile"><b>333<small>FOLLOWERS</small></b></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        <!--show content-->
+
+          <div class="tab-content container p-4 ml-0">
+            <div id="photosProfile" class=" tab-pane active">
+              <div class="row d-flex flex-row-reverse p-3">
+                <a class="btn btn-success float-right btnRadius" href=""><b>Add Photo</b></a>
+              </div>
+              <div class="row">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center" style="display: block;">
+                  <div class="sizePhotos d-flex justify-content-center">
+                      <img class="rounded-sm sizeMyPhotos" style="position: absolute; z-index: 0;" src="/assets/img2.jpeg">
+                      <i class="fa fa-lock rounded-circle bg-secondary p-1" style="position: absolute; z-index: 1; margin-left: 165px; margin-top: 5px;"></i>
+                      <a class="btn btn-secondary" style="position: absolute; z-index: 2; margin-top: 160px; margin-left: 130px; float: right;" href="#">EDIT</a>
+                  </div>
+                  <p>TITLE</p>
+                </div>
+
+              </div>
+            </div><!--end tab show photo-->
+            <div id="albumsProfile" class="tab-pane fade">
+              <div class="row d-flex flex-row-reverse p-3">
+                <a class="btn btn-success float-right btnRadius" href=""><b>Add Albums</b></a>
+              </div>
+              <div class="row">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center" style="display: block;">
+                  <div class="sizePhotos d-flex justify-content-center m-0 text-center">
+                    <img class="rounded-sm sizeMyAlbums" style="position: absolute; z-index: 3;" src="/assets/img2.jpeg">
+                    <img class="rounded-sm sizeMyAlbums" style="position: absolute; z-index: 2; transform: rotate(5deg);" src="/assets/img4.jpeg">
+                    <img class="rounded-sm sizeMyAlbums" style="position: absolute; z-index: 1; transform: rotate(10deg);" src="/assets/img5.jpg">
+                    <img class="rounded-sm sizeMyAlbums" style="position: absolute; z-index: 0; transform: rotate(15deg);" src="/assets/img3.jpg">
+                    <p class="rounded-circle bg-secondary p-3" style="position: absolute; z-index: 4; margin-top: 70px;"><b>12<br><small>PHOTOS</small></b></p>
+                    <i class="fa fa-lock rounded-circle bg-secondary p-1" style="position: absolute; z-index: 5; margin-left: 165px; margin-top: 5px;"></i>
+                      <a class="btn btn-secondary" style="position: absolute; z-index: 6; margin-top: 160px; margin-left: 130px; float: right;" href="#">EDIT</a>
+                  </div>
+                    <p>TITLE</p>
+
+                </div>
+              </div>
+            </div><!--end tab show album-->
+            <div id="followingsProfile" class="tab-pane fade">
+              <div class="row">
+                <div class="col-6 col-sm-4 col-md-4 col-lg-3 p-1">
+                  <div class="card rounded-sm">
+                    <div class="d-flex justify-content-center mt-3">
+                      <img class="card-img-top rounded-circle" src="/assets/img3.jpg" alt="Card image" style="width: 150px; height: 150px;">
+                    </div>
+                    <div class="card-body text-center">
+                      <h4 class="card-title"><b>John Doe</b></h4>
+                      <ul class="nav d-inline-flex">
+                        <li class="m-2">
+                          <a class="nav-link" data-toggle="tab" href="#"><b>111<br><small>PHOTOS</small></b></a>
+                        </li>
+                        <li class="m-2">
+                          <a class="nav-link" data-toggle="tab" href="#"><b>222<br><small>ALBUMS</small></b></a>
+                        </li>
+                      </ul>
+                      <a class="btn" id= "btnFollow"><b>unfollow</b></a>
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+            <!--end tab show followings-->
+            <div id="followersProfile" class="tab-pane fade">
+              <div class="row">
+                <div class="col-6 col-sm-4 col-lg-3 p-1">
+                  <div class="card rounded-sm">
+                    <div class="d-flex justify-content-center mt-3">
+                      <img class="card-img-top rounded-circle" src="/assets/img3.jpg" alt="Card image" style="width: 150px; height: 150px;">
+                    </div>
+                    <div class="card-body text-center">
+                      <h4 class="card-title"><b>John Doe</b></h4>
+                      <ul class="nav d-inline-flex">
+                        <li class="m-2">
+                          <a class="nav-link" data-toggle="tab" href="#"><b>111<br><small>PHOTOS</small></b></a>
+                        </li>
+                        <li class="m-2">
+                          <a class="nav-link" data-toggle="tab" href="#"><b>222<br><small>ALBUMS</small></b></a>
+                        </li>
+                      </ul>
+                      <a class="btn" id= "btnFollow"><b>Follow</b></a>
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+            </div><!--end tab show followers-->
+          </div> <!--end class tab-content-->
+
+      </article>
+    </div>
+  </section>
+
+
+
+
+<p>
+  <strong>first_name:</strong>
+  <%= @user.first_name %>
+</p>
+
+<p>
+  <strong>last_name:</strong>
+  <%= @user.last_name %>
+</p>
+<p>
+  <strong>email:</strong>
+  <%= @user.email %>
+</p>
+<p>
+  <strong>password:</strong>
+  <%= @user.password %>
+</p>
