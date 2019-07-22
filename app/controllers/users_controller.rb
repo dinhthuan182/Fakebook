@@ -20,6 +20,8 @@ class UsersController < ApplicationController
   def show
     @get_photos = Photo.where(user_id: @user.id)
     @get_albums = Album.where(user_id: @user.id)
+    @get_followings = @user.followings
+    @get_followers = @user.followers
   end
 
   def destroy
@@ -33,14 +35,12 @@ class UsersController < ApplicationController
     @title = "Followings"
     @user  = User.find(params[:id])
     @users = @user.followings.paginate(page: params[:page])
-    # render 'show_follow'
   end
 
   def followers
     @title = "Followers"
     @user  = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page])
-    # render 'show_follow'
   end
 
   def set_user

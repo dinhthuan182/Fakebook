@@ -26,10 +26,10 @@
                 <a class="nav-link" data-toggle="tab" href="#albumsProfile"><b><%= @get_albums.count %></b><small> <b>ALBUMS</b></small></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#followingsProfile" id="followings_tab_<%= @user.id %>"><b><%= @user.followings.count %></b><small> <b>FOLLOWINGS</b></small></a>
+                <a class="nav-link" data-toggle="tab" href="#followingsProfile" id="followings_tab_<%= @user.id %>"><b><%= @get_followings.count %></b><small> <b>FOLLOWINGS</b></small></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#followersProfile" id="followers_tab_<%= @user.id %>"><b><%= @user.followers.count %></b><small> <b>FOLLOWERS</b></small></a>
+                <a class="nav-link" data-toggle="tab" href="#followersProfile" id="followers_tab_<%= @user.id %>"><b><%= @get_followers.count %></b><small> <b>FOLLOWERS</b></small></a>
               </li>
             </ul>
           </div>
@@ -107,7 +107,7 @@
         <!--end tab show album-->
         <div id="followingsProfile" class="tab-pane fade">
           <div class="row" id="moreFollowing_<%= @user.id %>">
-            <% @user.followings.each do |user| %>
+            <% @get_followings.each do |user| %>
               <%= link_to user do %>
                 <div class="col-12 col-sm-6 col-lg-3 p-1" id="following_<%= user.id %>_<%= @user.id %>">
                   <div class="card rounded-sm">
@@ -143,7 +143,7 @@
         <!--end tab show followings-->
         <div id="followersProfile" class="tab-pane fade">
           <div class="row" id="moreFollowers_<%= @user.id %>">
-            <% @user.followers.each do |user| %>
+            <% @get_followers.each do |user| %>
               <%= link_to user do %>
                 <div class="col-12 col-sm-6 col-lg-3 p-1 %>" id="follower_<%= user.id %>_<%= @user.id %>">
                   <div class="card rounded-sm">
