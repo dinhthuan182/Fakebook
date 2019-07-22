@@ -1,0 +1,59 @@
+<% provide(:title, "Feeds") %>
+<%= render 'layouts/toolbar' %>
+<%= render 'layouts/view_modal' %>
+<section class="container-fluid p-0">
+    <!--Tab feeds va discover-->
+    <div class="row">
+      <%= render '/layouts/tab_feeds'%>
+
+      <article class="tab-content col-md-8 p-0 bg-white" >
+        <!-- feeds Page-->
+        <div id="feedsPage" class="container-fluid tab-pane active p-0">
+          <div class="d-flex justify-content-center mb-2">
+                <ul class="nav nav-tabs btn-group btn-group-md pt-3">
+                  <li class="nav-item btn btn-white">
+                      <a class="navbar-brand active" data-toggle="tab" href="#photoFeeds"><b>PHOTO</b></a>
+                  </li>
+                  <li class="nav-item btn btn-primary">
+                      <a class="navbar-brand text-white" data-toggle="tab" href="#albumFeeds"><b>ALBUM</b></a>
+                  </li>
+                </ul>
+          </div>
+          <!-- end button PHOTO and ALBUM-->
+
+          <div class="container-fluid tab-pane active">
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <!-- tab hinh anh -->
+              <div class="container-fluid tab-pane active" id="photoFeeds">
+                <div class="row d-flex">
+                  <% @photos_feeds.each do |photo| %>
+                    <% if !photo.sharing_mode == false %>
+                      <%= render 'photo_tab', photo: photo, home: false %>
+                    <% end %>
+                  <% end %>
+                </div>
+                <div class="d-flex justify-content-center mt-3">
+                  <%= will_paginate @photos_feeds, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, previous_label:"<<", next_label: ">>", inner_window: 0, outer_window: 0 %>
+                </div>
+              </div>
+              <!-- end tab photo -->
+              <!--  tab album -->
+              <div class="container-fluid tab-pane fade" id="albumFeeds">
+                <div class="row">
+                  <% @albums_feeds.each do |album| %>
+                    <% if !album.sharing_mode == false %>
+                      <%= render 'album_tab', album: album, home: false %>
+                    <% end %>
+                  <% end %>
+                </div> <!-- end tab albumFeeds -->
+                <div class="d-flex justify-content-center mt-3">
+                  <%= will_paginate @albums_feeds, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, previous_label:"<<", next_label: ">>", inner_window: 0, outer_window: 0 %>
+                </div>
+              </div> <!-- end tab contents -->
+            </div>
+          </div>
+        </div> <!--end teb feedsPage-->
+      </article>
+    </div>
+  </section>
