@@ -78,22 +78,22 @@
             <% @get_albums.each do |album| %>
               <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center">
                 <div class="d-flex justify-content-center m-0 text-center size-image">
-                  <% album.images.each_with_index do |photo, index| %>
-                    <% if (index != album.images.length - 1) %>
+                  <% album.image_albums.each_with_index do |photo, index| %>
+                    <% if (index != album.image_albums.length - 1) %>
                       <% a = (index*3+3).to_s %>
-                      <%= image_tag photo, {class:"rounded-sm size-my-photos", style:"position: absolute; z-index: index; transform: rotate("+ a +"deg)"} %>
+                      <%= image_tag photo.image_url, {class:"rounded-sm size-my-photos", style:"position: absolute; z-index: index; transform: rotate("+ a +"deg)"} %>
                     <% else %>
-                      <%= image_tag photo, {class:"rounded-sm size-my-photos", style:"position: absolute; z-index: index;"} %>
+                      <%= image_tag photo.image_url, {class:"rounded-sm size-my-photos", style:"position: absolute; z-index: index;"} %>
                     <% end %>
                   <% end %>
-                  <p class="rounded-circle bg-secondary p-3" style="position: absolute; z-index: <%= album.images.length %> + 1; margin-top: 70px; opacity: 0.7;"><b><%= album.images.length %><br><small>PHOTOS</small></b></p>
+                  <p class="rounded-circle bg-secondary p-3" style="position: absolute; z-index: <%= album.image_albums.length %> + 1; margin-top: 70px; opacity: 0.7;"><b><%= album.image_albums.length %><br><small>PHOTOS</small></b></p>
                   <% if album.sharing_mode? %>
-                    <i class="fa fa-unlock fa-lg rounded-circle bg-secondary p-2 mt-1 btn-lock" style= "z-index: <%= album.images.length %> + 2;"></i>
+                    <i class="fa fa-unlock fa-lg rounded-circle bg-secondary p-2 mt-1 btn-lock" style= "z-index: <%= album.image_albums.length %> + 2;"></i>
                     <% else %>
-                    <i class="fa fa-lock fa-lg rounded-circle bg-secondary p-2 mt-1 btn-lock" style= "z-index: <%= album.images.length %> + 2;"></i>
+                    <i class="fa fa-lock fa-lg rounded-circle bg-secondary p-2 mt-1 btn-lock" style= "z-index: <%= album.image_albums.length %> + 2;"></i>
                   <% end %>
                   <%if current_user.id == @user.id %>
-                    <a href="<%= edit_album_path(album) %>" class="btn btn-secondary btn-edit" style="z-index: <%= album.images.length %> + 3;">EDIT</a>
+                    <a href="<%= edit_album_path(album) %>" class="btn btn-secondary btn-edit" style="z-index: <%= album.image_albums.length %> + 3;">EDIT</a>
 
                   <% end %>
                 </div>

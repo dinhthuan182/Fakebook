@@ -12,7 +12,7 @@
               <hr>
             </div>
           </div>
-          <%= simple_form_for @album, multipart: true, remote: true do |f| %>
+          <%= simple_form_for album,html: { multipart: true}, remote: true do |f| %>
             <%= f.error_notification %>
             <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
             <div class="form-inputs">
@@ -36,35 +36,33 @@
               </div>
               <div class="row">
                 <div class="col images">
-                  <% if @album.images.exists? %>
-                    <% @album.images.each do |image| %>
-                      <% if image.variable? %>
-                        <div id="image_<%= image.id %>">
-                          <div class="float-left mt-2 mr-1">
+                  <% if album.image_albums.any? %>
+                    <% album.image_albums.each do |img| %>
+                        <div id="image_<%= img.id %>">
+                          <div class="float-left m-2">
                             <div ng-repeat="file in imagefinaldata" class="img-wrp">
-                              <%= image_tag image, {class:"size-my-photos"} %>
-                              <%= link_to delete_image_attachment_album_url(image.id),
-                                method: :delete do %>
+                              <%= image_tag img.image_url, {class:"size-my-photos"} %>
+                              <%= link_to delete_image_attachment_album_url(img.id), method: :delete do %>
                                 <img class="btn-close-album m-1" src="/assets/close.png" />
                               <% end %>
                             </div>
                           </div>
                         </div>
-                      <% end %>
                     <% end %>
                   <% end %>
-                  <div class="upload-btn-wrapper float-left size-my-photos mt-2">
-                    <button class="btn-upload"><img src="/assets/plus4.png"></button>
-                    <%= f.file_field :images, multiple: true,
-                                              direct_upload: true,
-                                              class:"btn-upload",
-                                              onchange:"showImageAlbum.call(this)" %>
+                  <div class="upload-btn-wrapper float-left size-my-photos m-2">
+                    <%= f.fields_for :image_albums do |p| %>
+                      <div class="field size-my-photos">
+                        <button class="btn-upload"><img src="/assets/plus4.png"></button>
+                        <%= p.file_field :image, multiple: true, name: "image_albums[image][]", class: "upload-image btn-upload" %>
+                      </div>
+                    <% end %>
                   </div>
                 </div>
               </div>
             </div>
             <div class="form-actions row mt-5 m-1">
-              <%= f.button :submit, "Save", class:"btn btn-submit mr-2" %>
+              <%= f.submit "Save", class:"btn btn-submit mr-2" %>
               <%= link_to album, method: :delete,
                                  data: { confirm: 'Are you sure?' } do %>
                 <button class=" btn btn-delete ml-2"> <i class="far fa-trash-alt"></i> Delete</button>

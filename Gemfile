@@ -52,7 +52,7 @@ gem 'gravatar_for', '~> 0.1.2'
 gem 'will_paginate', '>= 3.1'
 gem 'popper_js', '~> 1.9', '>= 1.9.9'
 gem 'will_paginate-bootstrap4'
-
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

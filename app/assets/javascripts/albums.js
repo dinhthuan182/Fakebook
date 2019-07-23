@@ -17,3 +17,31 @@ function showImageAlbum() {
 function clickCloseA(){
   $(this).parent().parent().remove();
 };
+
+
+
+$(function(){
+  $(".upload-image").on("change", function(){
+    var preview = document.querySelector('.images');
+    var files   = document.querySelector('input[type=file]').files;
+
+    function readAndPreview(file) {
+      if ( /\.(jpe?g|png|gif)$/i.test(file.name) ) {
+        var reader = new FileReader();
+        reader.addEventListener("load", function () {
+          var image = new Image();
+          image.height = 230;
+          image.width = 230;
+          image.title = file.name;
+          image.src = this.result;
+          preview.prepend(image);
+        }, false);
+        reader.readAsDataURL(file);
+      }
+    }
+
+    if (files) {
+      [].forEach.call(files, readAndPreview);
+    }
+  })
+})

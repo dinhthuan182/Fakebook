@@ -1,5 +1,5 @@
 <div class="col-sm-12 col-md-12 col-lg-6  d-flex mt-2" id="post_photo_<%= photo.user.id %>" >
-  <div class="container-fluid m-2 border rounded">
+  <div class="container-fluid m-1 border rounded">
     <div class="row">
       <%= link_to photo_path(photo), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal_photo', class: 'col-12 col-sm-12 col-md-6 p-1'} do %>
         <div class=" size-albums">
@@ -9,7 +9,7 @@
       <div class="col-md-6">
         <div class="mt-1">
           <%unless current_user.id == photo.user.id %>
-            <div id="follow_form_feeds_photo_<%= photo.user.id %>" class="pr-2">
+            <div id="follow_form_feeds_photo_<%= photo.user.id %>">
               <% if !home %>
                 <%= render 'follow_home', user: photo.user %>
               <% end %>
@@ -29,7 +29,7 @@
             <%= render 'like_form_photo', post: photo %>
             <p id="count_photo_<%= photo.id %>" class="like-number"><b> <%= photo.likes.size %></b></p>
           </div>
-          <small class="pt-4 pr-2 float-right "><%= photo.created_at.strftime("%I:%M %p %-d/%-m/%Y") %></small>
+          <small class="pt-3 pr-2 float-right "><%= photo.created_at.strftime("%I:%M %p %-d/%-m/%Y") %></small>
         </div>
       </div>
     </div>

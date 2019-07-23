@@ -17,6 +17,7 @@ class AlbumsController < ApplicationController
 
   def new
     @album = Album.new
+    @images = @album.image_albums.build
     @album.user = current_user
   end
 
@@ -29,6 +30,9 @@ class AlbumsController < ApplicationController
 
     respond_to do |format|
       if @album.save
+        params[:image_albums]['image'].each do |a|
+          @image_album = @album.image_albums.create!(:image => a)
+        end
         format.html { redirect_to current_user, notice: 'Album was successfully created.' }
         format.json { render :show, status: :created, location: current_user }
       else
@@ -41,6 +45,9 @@ class AlbumsController < ApplicationController
   def update
     respond_to do |format|
       if @album.update(album_params)
+        params[:image_albums]['image'].each do |a|
+          @image_album = @album.image_albums.create!(:image => a)
+        end
         format.html { redirect_to current_user, notice: 'Album was successfully updated.' }
         format.json { render :show, status: :ok, location: current_user }
       else
@@ -59,8 +66,8 @@ class AlbumsController < ApplicationController
   end
 
   def delete_image_attachment
-    @image = ActiveStorage::Attachment.find(params[:id])
-    @image.purge
+    @image = ImageAlbum.find(params[:id])
+    @image.destroy
     respond_to do |format|
       format.html {redirect_back(fallback_location: request.referer)}
       format.js
@@ -73,6 +80,6 @@ class AlbumsController < ApplicationController
     end
 
     def album_params
-      params.require(:album).permit(:title, :description, :sharing_mode, images: [])
+      params.require(:album).permit(:title, :description, :sharing_mode, image_albums_attributes: [:id, :album_id, :image])
     end
 end
