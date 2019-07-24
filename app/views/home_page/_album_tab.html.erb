@@ -4,12 +4,12 @@
       <%= link_to album_path(album), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#modal_album'} do %>
       <div class="col-12 col-sm-12 col-lg-6 mt-3 w-100" data-toggle="modal" data-target="#modalAlbum">
         <div class="size-photos d-flex justify-content-center m-0">
-          <% album.images.each_with_index do |photo, index| %>
-            <% if (index != album.images.length - 1) %>
+          <% album.image_albums.each_with_index do |photo, index| %>
+            <% if (index != album.image_albums.length - 1) %>
               <% a = (index*3+3).to_s %>
-              <%= image_tag photo, {class:"rounded-sm size-photos", style:"position: absolute; z-index: index; transform: rotate("+ a +"deg)"} %>
+              <%= image_tag photo.image_url, {class:"rounded-sm size-photos", style:"position: absolute; z-index: index; transform: rotate("+ a +"deg)"} %>
             <% else %>
-              <%= image_tag photo, {class:"rounded-sm size-photos", style:"position: absolute; z-index: index;"} %>
+              <%= image_tag photo.image_url, {class:"rounded-sm size-photos", style:"position: absolute; z-index: index;"} %>
             <% end %>
           <% end %>
         </div>

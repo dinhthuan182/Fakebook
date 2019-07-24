@@ -45,9 +45,12 @@ class AlbumsController < ApplicationController
   def update
     respond_to do |format|
       if @album.update(album_params)
-        params[:image_albums]['image'].each do |a|
-          @image_album = @album.image_albums.create!(:image => a)
+        unless params[:image_albums]['image'].empty?
+          params[:image_albums]['image'].each do |a|
+            @image_album = @album.image_albums.create!(:image => a)
+          end
         end
+
         format.html { redirect_to current_user, notice: 'Album was successfully updated.' }
         format.json { render :show, status: :ok, location: current_user }
       else
