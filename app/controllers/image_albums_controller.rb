@@ -1,2 +1,0 @@
-class ImageAlbumsController < ApplicationController
-end

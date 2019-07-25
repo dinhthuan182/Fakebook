@@ -9,11 +9,11 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-12">
-              <h3 class="pt-4"><b>New Album</b></h3>
+              <h3 class="pt-4"><b>Edit Album</b></h3>
               <hr>
             </div>
           </div>
-          <%= simple_form_for @album, html: { multipart: true}, remote: true do |f| %>
+          <%= simple_form_for @album,url: album_images_path(@album), method: :post, :html => {:multipart => true}, remote: true do |f| %>
             <%= f.error_notification %>
             <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
             <div class="form-inputs">
@@ -37,27 +37,24 @@
               </div>
               <div class="row">
                 <div class="col images">
-                  <% if @album.image_albums.any? %>
-                    <% @album.image_albums.each do |img| %>
-                        <div id="image_<%= img.id %>">
-                          <div class="float-left m-2">
-                            <div ng-repeat="file in imagefinaldata" class="img-wrp">
-                              <%= image_tag img.image_url, {class:"size-my-photos"} %>
-                              <%= link_to delete_image_attachment_album_url(img.id), method: :delete do %>
-                                <img class="btn-close-album m-1" src="/assets/close.png" />
-                              <% end %>
-                            </div>
-                          </div>
+                  <% @album.images.each_with_index do |img, index| %>
+                    <div id="image_<%= img %>">
+                      <div class="float-left m-2">
+                        <div ng-repeat="file in imagefinaldata" class="img-wrp">
+                          <%= image_tag img.url, {class:"size-my-photos"} %>
+                          <%= f.check_box :_destroy, style: "display: none" %>
+                          <%= link_to album_image_path(@album, index), :method => :delete, data: { confirm: "Are you sure you want to delete this image?" } do %>
+                            <img class="btn-close-album m-1" src="/assets/close.png" />
+                          <% end %>
                         </div>
-                    <% end %>
+                      </div>
+                    </div>
                   <% end %>
                   <div class="upload-btn-wrapper float-left size-my-photos m-2">
-                    <%= f.fields_for :image_albums do |p| %>
-                      <div class="field size-my-photos">
-                        <button class="btn-upload"><img src="/assets/plus4.png"></button>
-                        <%= p.file_field :image, multiple: true, name: "image_albums[image][]", class: "upload-image btn-upload" %>
-                      </div>
-                    <% end %>
+                    <div class="field size-my-photos">
+                      <button class="btn-upload"><img src="/assets/plus4.png"></button>
+                      <%= f.file_field :image, multiple: true, class: "btn-upload" %>
+                    </div>
                   </div>
                 </div>
               </div>

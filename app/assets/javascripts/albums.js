@@ -3,9 +3,11 @@
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
 
-function clickCloseA(){
+function clickCloseItem(){
   $(this).parent().parent().remove();
 };
+
+console.log($('.images').length);
 
 $(document).ready(function(){
   $(".btn-upload").on("change", function(){
@@ -15,9 +17,10 @@ $(document).ready(function(){
 
     function readAndPreview(file) {
       if ( /\.(jpe?g|png|gif)$/i.test(file.name) ) {
+        console.log("load function 3");
         var reader = new FileReader();
         reader.addEventListener("load", function () {
-          var image = '<div class="float-left mt-2 mr-1"><div ng-repeat="file in imagefinaldata" class="img-wrp"><img src="' + this.result + '" class="size-my-photos"/><img class="btn-close-album m-1" src="/assets/close.png" onclick="clickCloseA.call(this)" /></div></div>';
+          var image = '<div class="float-left m-2"><div ng-repeat="file in imagefinaldata" class="img-wrp"><img src="' + this.result + '" class="size-my-photos"/><img class="btn-close-album m-1" src="/assets/close.png" onclick="clickCloseItem.call(this)" /></div></div>';
            $('.images').prepend(image);
         }, false);
         reader.readAsDataURL(file);
@@ -25,6 +28,7 @@ $(document).ready(function(){
     };
 
     if (files) {
+      console.log("load function 2");
       [].forEach.call(files, readAndPreview);
     };
   });

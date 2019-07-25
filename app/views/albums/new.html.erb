@@ -37,14 +37,14 @@
               </div>
               <div class="row">
                 <div class="col images">
-                  <div class="upload-btn-wrapper float-left size-my-photos m-2">
-                    <%= f.fields_for :image_albums do |p| %>
+                  <%= image_tag(@album.images_url) if @album.images? %>
+                    <div class="upload-btn-wrapper float-left size-my-photos m-2">
                       <div class="field size-my-photos">
                         <button class="btn-upload"><img src="/assets/plus4.png"></button>
-                        <%= p.file_field :image, multiple: true, name: "image_albums[image][]", class: "upload-image btn-upload" %>
+                        <%= f.file_field :images, multiple: true, class: "btn-upload" %>
                       </div>
-                    <% end %>
-                  </div>
+                      <%= f.hidden_field :images_cache %>
+                    </div>
                 </div>
               </div>
             </div>
