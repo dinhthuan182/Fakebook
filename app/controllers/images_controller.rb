@@ -2,9 +2,11 @@ class ImagesController < ApplicationController
   before_action :set_album
 
   def create
-    add_more_images(images_params[:images])
+    if images_params[:images]
+      add_more_images(images_params[:images])
+    end
     @album.save
-    redirect_back(fallback_location: root_path)
+    redirect_to current_user
   end
 
   def destroy
@@ -21,7 +23,7 @@ class ImagesController < ApplicationController
 
   def add_more_images(new_images)
     images = @album.images
-    images.append new_images
+    images += new_images
     @album.images = images
   end
 

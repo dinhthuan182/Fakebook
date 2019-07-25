@@ -59,15 +59,6 @@ class AlbumsController < ApplicationController
     end
   end
 
-  def delete_image_attachment
-    @image = ImageAlbum.find(params[:id])
-    @image.destroy
-    respond_to do |format|
-      format.html {redirect_back(fallback_location: request.referer)}
-      format.js
-    end
-  end
-
   private
     def set_album
       @album = Album.find(params[:id])

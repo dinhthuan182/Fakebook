@@ -15,6 +15,7 @@
 //= require jquery_ujs
 //= require jquery-ui/widgets/sortable
 //= require bootstrap
+//= require dropzone
 //= require popper
 //= require turbolinks
 //= require_tree .

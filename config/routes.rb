@@ -17,9 +17,6 @@ Rails.application.routes.draw do
   resources :albums do
     resources :likes, only: [:create, :destroy], module: :albums
     resources :images, :only => [:create, :destroy]
-    member do
-      delete :delete_image_attachment
-    end
   end
 
   resources :photos do
