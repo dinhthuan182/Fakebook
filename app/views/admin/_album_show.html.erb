@@ -3,9 +3,9 @@
     <% album.images.each_with_index do |photo, index| %>
       <% if (index != album.images.length - 1) %>
         <% a = ((album.images.length.to_i - index)*3).to_s %>
-        <%= image_tag photo, {class:"rounded-sm admin-photos", style:"position: absolute; z-index: index; transform: rotate("+ a +"deg)"} %>
+        <%= image_tag photo.url, {class:"rounded-sm admin-photos", style:"position: absolute; z-index: index; transform: rotate("+ a +"deg)"} %>
       <% else %>
-        <%= image_tag photo, {class:"rounded-sm admin-photos", style:"position: absolute; z-index: index;"} %>
+        <%= image_tag photo.url, {class:"rounded-sm admin-photos", style:"position: absolute; z-index: index;"} %>
       <% end %>
     <% end %>
     <p class="rounded bg-secondary p-1 title-show-album" style=" position: absolute; z-index: album.images.length + 1;"><%= album.title %></b></p>

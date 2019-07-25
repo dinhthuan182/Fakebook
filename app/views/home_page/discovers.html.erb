@@ -1,59 +1,40 @@
-<% provide(:title, "Home") %>
+<% provide(:title, "Discovers") %>
 <%= render 'layouts/toolbar' %>
 <%= render 'layouts/view_modal' %>
 <section class="container-fluid p-0">
-    <!--Tab feeds va discover-->
-    <div class="row">
-      <%= render '/layouts/tab_feeds'%>
+  <!--Tab feeds va discover-->
+  <div class="row">
+    <%= render '/layouts/tab_feeds'%>
 
-      <article class="tab-content col-md-8 p-0 bg-white" >
-        <!-- feeds Page-->
-        <div id="feedsPage" class="container-fluid tab-pane active p-0">
-          <div class="d-flex justify-content-center mb-2">
-                <ul class="nav nav-tabs btn-group btn-group-md pt-3">
-                  <li class="nav-item btn btn-white">
-                      <a class="navbar-brand active" data-toggle="tab" href="#photoDiscovers"><b>PHOTO</b></a>
-                  </li>
-                  <li class="nav-item btn btn-primary">
-                      <a class="navbar-brand text-white" data-toggle="tab" href="#albumDiscovers"><b>ALBUM</b></a>
-                  </li>
-                </ul>
-          </div>
-          <!-- end button PHOTO and ALBUM-->
+    <article class="tab-content col-md-8 p-0 bg-white" >
+      <!-- feeds Page-->
+      <div id="feedsPage" class="container-fluid tab-pane active p-0">
+        <div class="d-flex justify-content-center mb-2">
+          <ul class="nav nav-tabs btn-group btn-group-md pt-3">
+            <li class="nav-item btn btn-white">
+                <a class="navbar-brand active" data-toggle="tab" href="#photoDiscovers"><b>PHOTO</b></a>
+            </li>
+            <li class="nav-item btn btn-primary">
+                <a class="navbar-brand text-white" data-toggle="tab" href="#albumDiscovers"><b>ALBUM</b></a>
+            </li>
+          </ul>
+        </div>
+        <!-- end button PHOTO and ALBUM-->
 
-          <div class="container-fluid tab-pane active">
-            <!-- Tab panes -->
-            <div class="tab-content">
-              <!-- tab hinh anh -->
-              <div class="container-fluid tab-pane active" id="photoDiscovers">
-                <div class="row d-flex">
-                  <% @photos_discovers.each do |photo| %>
-                    <% if !photo.sharing_mode == false %>
-                      <%= render 'photo_tab', photo: photo, home: true %>
-                    <% end %>
-                  <% end %>
-                </div>
-                <div class="d-flex justify-content-center mt-3">
-                  <%= will_paginate @photos_discovers, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, previous_label:"<<", next_label: ">>", inner_window: 0, outer_window: 0 %>
-                </div>
-              </div>
-              <!-- end tab photo -->
-              <!--  tab album -->
-              <div class="container-fluid tab-pane fade" id="albumDiscovers">
-                <div class="row">
-                  <% @albums_discovers.each do |album| %>
-                    <% if !album.sharing_mode == false %>
-                      <%= render 'album_tab', album: album, home: true %>
-                    <% end %>
-                  <% end %>
-                </div> <!-- end tab albumFeeds -->
-                <div class="d-flex justify-content-center mt-3">
-                  <%= will_paginate @albums_discovers, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, previous_label:"<<", next_label: ">>", inner_window: 0, outer_window: 0 %>
-                </div>
-              </div> <!-- end tab contents -->
+        <div class="container-fluid tab-pane active">
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <!-- tab hinh anh -->
+            <div class="container-fluid tab-pane active" id="photoDiscovers">
+              <%= render 'photo_tab', photos: @photos_discovers, home: true %>
             </div>
+            <!--  tab album -->
+            <div class="container-fluid tab-pane fade" id="albumDiscovers">
+              <%= render 'album_tab', albums: @albums_discovers, home: true %>
+            </div> <!-- end tab contents -->
           </div>
-        </div> <!--end teb feedsPage-->
-      </article>
-    </div>
-  </section>
+        </div>
+      </div> <!--end teb feedsPage-->
+    </article>
+  </div>
+</section>
