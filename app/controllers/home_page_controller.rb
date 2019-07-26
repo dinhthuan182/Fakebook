@@ -8,7 +8,9 @@ class HomePageController < ApplicationController
   end
 
   def discovers
-    @photos_discovers = Photo.published_photo.where.not(user_id: current_user).paginate(page_photos: params[:page], per_page: PAGE)
-    @albums_discovers = Album.published_album.where.not(user_id: current_user).paginate(page_albums: params[:page], per_page: PAGE)
+    puts '---------------------------------------------'
+    puts params[:page_photos]
+    @photos_discovers = Photo.published_photo.where.not(user_id: current_user).paginate(page: params[:page_photos], per_page: PAGE)
+    @albums_discovers = Album.published_album.where.not(user_id: current_user).paginate(page: params[:page_albums], per_page: PAGE)
   end
 end

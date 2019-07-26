@@ -42,5 +42,5 @@
   <% end %>
 </div>
 <div class="d-flex justify-content-center mt-3">
-  <%= will_paginate photos, params_name: 'page_photos', renderer: WillPaginate::ActionView::BootstrapLinkRenderer, previous_label:"<<", next_label: ">>", inner_window: 0, outer_window: 0, params: {active: 'page_photos'} %>
+  <%= will_paginate photos, param_name: 'page_photos', renderer: WillPaginate::ActionView::BootstrapLinkRenderer, previous_label:"<<", next_label: ">>", inner_window: 0, outer_window: 0, params: {active: 'page_photos'}, remote: true %>
 </div>
