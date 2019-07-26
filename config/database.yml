@@ -49,8 +49,8 @@ development:
 #
 production:
   adapter: postgresql
+  encoding: unicode
   database: Focobook_production
-  host: localhost
-  password:
-  # username: Focobook
-  # password: <%= ENV['FOCOBOOK_DATABASE_PASSWORD'] %>
+  pool: 5
+  username: Focobook
+  password: <%= ENV['FOCOBOOK_DATABASE_PASSWORD'] %>
