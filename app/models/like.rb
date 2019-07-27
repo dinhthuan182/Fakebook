@@ -1,6 +1,4 @@
 class Like < ApplicationRecord
-#Association
   belongs_to :user
-  belongs_to :postable, polymorphic: true
-#Validates
+  belongs_to :likeable, polymorphic: true
 end

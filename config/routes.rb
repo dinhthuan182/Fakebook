@@ -1,16 +1,27 @@
 Rails.application.routes.draw do
-  get     'photos/index'
-  get     'albums/index'
-  get     'users/index'
-  get     '/signup',  to: 'users#new'
-  get     '/login',   to: 'sessions#new'
-  post    '/login',   to: 'sessions#create'
-  delete  '/logout',  to: 'sessions#destroy'
-  get     '/edit',    to: 'users#edit'
+  root to: "home_page#discovers"
 
-  resources :albums
-  resources :photos
-  resources :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'users#index'
+  get '/feeds', to: "home_page#feeds"
+  get '/managers/photo', to: "admin#photo"
+  get '/managers/album', to: "admin#album"
+  get '/managers/user', to: "admin#user"
+
+  devise_for :users, :controllers => {:registrations => "registrations"}
+
+  resources :users do
+    member do
+      get :followings, :followers
+    end
+  end
+
+  resources :albums do
+    resources :likes, only: [:create, :destroy], module: :albums
+    resources :images, :only => [:create, :destroy]
+  end
+
+  resources :photos do
+    resources :likes, only: [:create, :destroy], module: :photos
+  end
+
+  resources :relationships,       only: [:create, :destroy]
 end

@@ -1,22 +1,46 @@
 class User < ApplicationRecord
-  has_secure_password
-  has_attached_file :avatar
-#Association
   has_many :photos
-  has_many :albums
-  has_many :likes
+  has_many :albums, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
-  has_many :active_follows, class_name: Follow.name, foreign_key: :follower_id
-  has_many :following, through: :active_follow, source: :followed
-  has_many :passive_follows, class_name: Follow.name, foreign_key: :followed_id
-  has_many :follower, through: :active_follow
+  #for button follow in profile page
+  has_many :active_relationships, class_name:  "Relationship",
+                                foreign_key: "follower_id",
+                                dependent:   :destroy
+  has_many :passive_relationships, class_name:  "Relationship",
+                                 foreign_key: "followed_id",
+                                 dependent:   :destroy
+  has_many :followings, through: :active_relationships, source: :followed
+  has_many :followers, through: :passive_relationships, source: :follower
 
-#validates
-  validates :fname, :lname, :email, :password, presence: true
-  validates :email, uniqueness: true
-  validates :fname , :lname, length: { maximum: 25 }
-  validates :email , length: { maximum: 255 }
-  validates :password , length: { maximum: 64 }
-  validates :password, confirmation: { case_sensitive: true }
-  validates :email, format: /\w+@\w+\.{1}[a-zA-Z]{2,}/
+  has_many :photos, through: :likes, source: :likeable, source_type: 'Photo'
+  has_many :albums, through: :likes, source: :likeable, source_type: 'Album'
+
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable,
+         :trackable
+
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100#" }, :default_url => "/assets/logoLogin.png"
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
+  def full_name
+    [first_name, last_name].select(&:present?).join(' ').titleize
+  end
+
+  # Follows a user.
+  def follow(other_user)
+    followings << other_user
+  end
+
+  # Unfollows a user.
+  def unfollow(other_user)
+    followings.delete(other_user)
+  end
+
+  # Returns true if the current user is following the other user.
+  def following?(other_user)
+    followings.include?(other_user)
+  end
 end

@@ -7,13 +7,14 @@ function showImagePhoto(){
   {
     var obj = new FileReader();
     obj.onload = function(data){
-      $('.images').prepend('<div class="img float-left mt-2 mr-1"><div ng-repeat="file in imagefinaldata" class="img_wrp"><img src="' + data.target.result + '" class="imgResponsiveMax sizeMyPhotos" alt="" /><img class="btnClose m-1" src="/assets/close.png" onclick="clickClose.call(this)"style="width:30px; height: 30px" /></div></div>');
-      $('.btnUpload').css({ display: "none" });
+      $('.image').prepend('<div class="img float-left m-2"><div ng-repeat="file in imagefinaldata" class="img-wrp"><img src="' + data.target.result + '" class="imgResponsiveMax size-my-photos" alt="" /><img class="btn-close m-1" src="/assets/close.png" onclick="clickClose.call(this)" /></div></div>');
+      $('.upload-btn-wrapper').css({ display: "none" });
     }
     obj.readAsDataURL(this.files[0]);
   }
 };
+
 function clickClose(){
-  $(this).parent().empty();
-  $('.btnUpload').css({ display: "block" });
+  $(this).parent().remove();
+  $('.upload-btn-wrapper').css({ display: "block" });
 };

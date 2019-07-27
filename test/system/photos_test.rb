@@ -14,10 +14,6 @@ class PhotosTest < ApplicationSystemTestCase
     visit photos_url
     click_on "New Photo"
 
-    fill_in "Description", with: @photo.description
-    fill_in "Image", with: @photo.image
-    fill_in "Poster", with: @photo.poster
-    fill_in "Title", with: @photo.title
     click_on "Create Photo"
 
     assert_text "Photo was successfully created"
@@ -28,10 +24,6 @@ class PhotosTest < ApplicationSystemTestCase
     visit photos_url
     click_on "Edit", match: :first
 
-    fill_in "Description", with: @photo.description
-    fill_in "Image", with: @photo.image
-    fill_in "Poster", with: @photo.poster
-    fill_in "Title", with: @photo.title
     click_on "Update Photo"
 
     assert_text "Photo was successfully updated"

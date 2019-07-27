@@ -1,97 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>FinalApp</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+    <script src="/assets/activestorage.self-1ed4604ac2170045f1ffca4edb81a75246661555e4f9cf682bb8a21825e32e1c.js?body=1" data-turbolinks-track="reload"></script>
+
+    <title><%= yield(:title) %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%= custom_bootstrap_flash %>
   </head>
 
   <body class="m-0">
-    <!--modal photo-->
-    <div class="modal fade" id="modalPhoto">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-              <!-- Modal Header -->
-              <div class="modal-header">
-                  <h4><b>Title</b></h4>
-                  <button type="button" class="close" data-dismiss="modal">×</button>
-                </div>
-
-              <!-- Modal body -->
-                <div class="modal-body">
-                  <img class="rounded-sm w-100 h-100" src="/assets/img1.jpeg">
-                </div>
-
-              <!-- Modal footer -->
-                <div class="modal-header">
-                  <p>Description: di choi voi ban be, ngam canh thien nhien</p>
-                </div>
-            </div>
-         </div>
-    </div><!--end modal Photo-->
-
-    <!--modal Album-->
-    <div class="modal fade" id="modalAlbum">
-        <div class="modal-dialog modal-xl">
-          <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-              <h4><b>Title</b></h4>
-              <button type="button" class="close" data-dismiss="modal">×</button>
-            </div>
-
-            <!-- Modal body -->
-            <div class="modal-body">
-              <div id="showAlbum" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
-                <ul class="carousel-indicators">
-                  <li data-target="#showAlbum" data-slide-to="0" class="active"></li>
-                  <li data-target="#showAlbum" data-slide-to="1"></li>
-                  <li data-target="#showAlbum" data-slide-to="2"></li>
-                </ul>
-                <!-- The slideshow -->
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img class="w-100 h-100" src="/assets/img1.jpeg" alt="Los Angeles">
-                  </div>
-                    <div class="carousel-item">
-                      <img class="w-100 h-100" src="/assets/img1.jpeg" alt="Chicago">
-                    </div>
-                  <div class="carousel-item">
-                    <img class="w-100 h-100" src="/assets/img1.jpeg" alt="New York">
-                  </div>
-                </div>
-                <!-- Left and right controls -->
-                <a class="carousel-control-prev" href="#showAlbum" data-slide="prev">
-                  <span class="carousel-control-prev-icon"></span>
-                </a>
-                <a class="carousel-control-next" href="#showAlbum" data-slide="next">
-                  <span class="carousel-control-next-icon"></span>
-                </a>
-              </div>
-            </div>
-            <!-- Modal footer -->
-            <div class="modal-header">
-              <p>Description: di choi voi ban be, ngam canh thien nhien</p>
-            </div>
-          </div>
-       </div>
-    </div>
-    <!--end modal Album-->
-    <header class="row">
-      <div class="col-0 col-sm-2 col-md-2">
-        <a href="/users" class="navbar-brand text-white mt-2 float-right"><h4><b>Fakebook</b></h4></a>
-      </div>
-      <div class="col-12 col-sm-3 col-md-6">
-        <input class="form-control mt-2 w-75" type="search" placeholder="Search Photo/Album" aria-label="Search">
-      </div>
-      <%= fillheader %>
-    </header>
     <%= yield %>
   </body>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </html>

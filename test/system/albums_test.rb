@@ -15,8 +15,6 @@ class AlbumsTest < ApplicationSystemTestCase
     click_on "New Album"
 
     fill_in "Description", with: @album.description
-    fill_in "List image", with: @album.list_image
-    fill_in "Poster", with: @album.poster
     fill_in "Title", with: @album.title
     click_on "Create Album"
 
@@ -29,8 +27,6 @@ class AlbumsTest < ApplicationSystemTestCase
     click_on "Edit", match: :first
 
     fill_in "Description", with: @album.description
-    fill_in "List image", with: @album.list_image
-    fill_in "Poster", with: @album.poster
     fill_in "Title", with: @album.title
     click_on "Update Album"
 

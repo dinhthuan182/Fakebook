@@ -1,6 +1,10 @@
 @import "bootstrap";
 @import "users";
 @import "photos";
+@import "albums";
+@import "style";
+@import "home_page";
+@import "admin";
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -13,55 +17,15 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require_self
  */
-header {
-  overflow: hidden;
-  background-color: #184785;
-}
-section {
-  background-color: #bec2c5;
-}
 
-#avatarTop {
-  height: 40px;
-  width: 40px;
-}
-#btnFollowCard {
-  width: 60px;
-  height: 25px;
-  font-size: 8px;
-}
-.sizePhotos {
-  height: 240px;
-  width: 240px;
-}
-.sizeAlbums {
-  height: 220px;
-  width: 220px;
-}
-.imgView {
-  transition: transform .2s;
 
-}
-.imgView:hover{
-  transform: scale(1.1);
-}
 
-.imgView:active{
-  transform: scale(0.5);
-}
-#btnFollow {
-  border-radius: 28px;
-  width: 95px;
-  height: 35px;
-  font-size: 15px;
-  background-color: #ffc107;
-  color: white;
-  border-color: #ffc107;
-}
-#btnFollow:hover {
-  transform: scale(1.1)
-}
+
+
+
+
+
+
 

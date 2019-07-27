@@ -7,6 +7,7 @@ ruby '2.6.3'
 gem 'rails', '~> 5.2.3'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -36,6 +37,25 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+gem 'bootstrap','>=4.3.1'
+gem 'font-awesome-rails'
+# gem 'bootstrap-sass', '3.3.6'
+gem 'jquery-rails','4.3.5'
+gem 'jquery-ui-rails'
+
+gem 'bcrypt', '~> 3.1.7'
+gem "paperclip", "~> 5.1"
+gem 'simple_form'
+gem 'devise'
+gem "mini_magick", ">= 4.9.4"
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+gem 'gravatar_for', '~> 0.1.2'
+gem 'will_paginate', '>= 3.1'
+gem 'popper_js', '~> 1.9', '>= 1.9.9'
+gem 'will_paginate-bootstrap4'
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -48,16 +68,10 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-
 end
-
-gem 'bootstrap','>=4.3.1'
-# gem 'bootstrap-sass', '3.3.6'
-gem 'jquery-rails','4.3.5'
-
-gem 'bcrypt', '~> 3.1.7'
-gem "paperclip", "~> 5.1"
-
+group :production do
+  gem 'pg', '~> 0.18.4'
+end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver

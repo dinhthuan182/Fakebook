@@ -1,76 +1,58 @@
+<% provide(:title, "New album") %>
+<%= render 'layouts/toolbar' %>
 <section class="container-fluid">
-
-    <!--Tab feeds va discover-->
-    <div class="row">
-      <%= render '/layouts/tab_feeds' %>
-
-      <article class="tab-content col-md-9 p-0 mt-5" >
-         <div class="col-sm-8 col-lg-9" style="background-color: white">
-            <div class="container">
+  <!--Tab feeds va discover-->
+  <div class="row">
+    <%= render '/layouts/tab_feeds' %>
+    <article class="tab-content col-md-9 mt-2" >
+      <div class="col-sm-8 col-lg-10 bg-white">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+              <h3 class="pt-4"><b>New Album</b></h3>
+              <hr>
+            </div>
+          </div>
+          <%= simple_form_for @album, html: { multipart: true }, remote: true do |f| %>
+            <%= f.error_notification %>
+            <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+            <div class="form-inputs">
               <div class="row">
-                <div class="col-12">
-                  <h3 class="pt-4"><b>New Album</b></h3>
-                  <hr>
+                <div class="col-12 col-lg-6">
+                  <div class="form-group">
+                    <label>Title</label>
+                    <%= f.text_field :title, class:"form-control", placeholder:"Enter photo title" %>
+                  </div>
+                  <div class="form-group">
+                    <label>Sharing Mode</label>
+                    <%= f.select(:sharing_mode, options_for_select([['Public', true], ['Private', false]]), {}, {class: "form-control w-50"}) %>
+                  </div>
+                </div>
+                <div class=" col-12 col-lg-6">
+                  <div class="form-group">
+                    <label>Desription</label>
+                    <%= f.text_area :description, class:"form-control",rows:"6", placeholder:"Enter description" %>
+                  </div>
                 </div>
               </div>
-              <%= form_with(model: @album, local: true) do |form| %>
-                <% if @album.errors.any? %>
-                  <div id="error_explanation">
-                    <h2><%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:</h2>
-
-                    <ul>
-                    <% @album.errors.full_messages.each do |message| %>
-                      <li><%= message %></li>
-                    <% end %>
-                    </ul>
-                  </div>
-                <% end %>
               <div class="row">
-                  <div class="col-12 col-lg-6">
-                    <div class="form-group">
-                        <label>Title</label>
-                        <%= form.text_field :title, class:"form-control", placeholder:"Enter photo title" %>
-                      </div>
-
-                    <div class="form-group">
-                        <label>Sharing Mode</label>
-                        <%= form.select(:sharing_mode, class:"form-control") do %>
-                          <% [['Public', true], ['Private', false]].each do |c| -%>
-                            <%= content_tag(:option, c.first, value: c.last) %>
-                          <% end %>
-                        <% end %>
-                      </div>
-
-                  </div>
-
-                  <div class=" col-12 col-lg-6">
-                    <div class="form-group">
-                        <label>Desription</label>
-                        <%= form.text_area :description, class:"form-control",rows:"6", placeholder:"Enter description" %>
-                      </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col images">
-                    <div class="upload-btn-wrapper float-left sizeMyPhotos mt-2">
-                      <button class="btnUpload"><img src="/assets/plus4.png"></button>
-                      <div class="controls">
-                        <%= file_field_tag "images[]", type: :file, multiple: true, class:"btnUpload", onchange:"showImageAlbum.call(this)" %>
+                <div class="col images ">
+                  <%= image_tag(@album.images_url) if @album.images? %>
+                    <div class="upload-btn-wrapper float-left size-my-photos m-2">
+                      <div class="field size-my-photos">
+                        <button class="btn-upload"><img src="/assets/plus4.png"></button>
+                        <%= f.file_field :images, multiple: true, class: "btn-upload" %>
                       </div>
                     </div>
-                  </div>
                 </div>
-
-                <div class="row mt-5 m-1">
-                    <%= form.submit "Save", class:"btn btnSubmit mr-2" %>
-                </div>
-              <% end %>
+              </div>
             </div>
-      </article>
-
-    </div>
-  </section>
-
-
-
-<%= link_to 'Back', albums_path %>
+            <div class="form-actions row mt-5 m-1">
+              <%= f.submit "Save", class:"btn btn-submit mr-2" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>

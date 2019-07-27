@@ -1,12 +1,14 @@
-// Place all the styles related to the Photos controller here.
+// Place all the styles related to the photos controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
 .upload-btn-wrapper {
   position: relative;
   overflow: hidden;
   display: inline-block;
 }
-button.btnUpload {
+button.btn-upload {
   width:100%;
   height: 100%;
   border: 3px dashed #a78f8f;
@@ -24,36 +26,36 @@ button.btnUpload {
   top: 0;
   opacity: 0;
 }
-input.btnSubmit {
+input.btn-submit {
   background-color: green;
   color: white;
   transition: transform .2s;
 
 }
-input.btnSubmit:hover{
+input.btn-submit:hover{
   background-color: #0080008f;
 }
-input.btnSubmit:active{
+input.btn-submit:active{
   background-color: #0080008f;
   transform: scale(1.05);
 }
 
-.btnUpload img {
+.btn-upload img {
   height: 165px;
   with: 165px;
   opacity:0.3;
 }
-.btnDelete {
+.btn-delete {
   background-color: red;
   color: white;
   transition: transform .2s;
 }
-.btnDelete:hover {
+.btn-delete:hover {
   background-color: #ff0000a8;
   color: white;
 }
 
-.btnDelete:active {
+.btn-delete:active {
   background-color: #ff0000a8;
   color: white;
   transform: scale(1.05);
@@ -62,17 +64,14 @@ input.btnSubmit:active{
   transition: transform .2s;
   transform: scale(0.95);
 }
-.img_wrp {
+.img-wrp {
   display: inline-block;
   position: relative;
 }
-.btnClose {
+.btn-close {
   position: absolute;
   top: 0;
   right: 0;
-}
-.btnCloseA {
-  position: absolute;
-  top: 0;
-  right: 0;
+  width: 30px;
+  height: 30px;
 }
